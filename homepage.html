@@ -11,98 +11,58 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/bootstrap-4.0.0-dist/css/custom.css">
-    <style>
-        body {
-          font-family: "Lato", sans-serif;
-          transition: background-color .5s;
-        }
-        
-        .sidenav {
-          height: 100%;
-          width: 0;
-          position: fixed;
-          z-index: 1;
-          top: 6;
-          left: 0;
-          background-color: #111;
-          overflow-x: hidden;
-          transition: 0.5s;
-          padding-top: 60px;
-        }
-        
-        .sidenav a {
-          padding: 8px 8px 8px 32px;
-          text-decoration: none;
-          font-size: 25px;
-          color: #818181;
-          display: block;
-          transition: 0.3s;
-        }
-        
-        .sidenav a:hover {
-          color: #f1f1f1;
-        }
-        
-        .sidenav .closebtn {
-          position: absolute;
-          top: 0;
-          right: 25px;
-          font-size: 36px;
-          margin-left: 50px;
-        }
-        
-        #main {
-          transition: margin-left .5s;
-          padding: 16px;
-        }
-        
-        @media screen and (max-height:300px) {
-          .sidenav {padding-top: 15px;}
-          .sidenav a {font-size: 18px;}
-        }
-        </style>
     
 </head>
 <body class="index_body">
+  <section>
+    <div class="header">
+      <a href="#default" class="logo">Movemanagement</a>
+    </div>
+    <div >
+      <span style="font-size:15px;cursor:pointer" onclick="openNav()">&#9776; menu</span>
+    </div>
+    
+  </section>
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">Home</a>
-        <a href="#">Projects</a>
-        <a href="#">Settings</a>
-        
-      </div>
-      
-      <div id="home">
-        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-        <h2 class="header">Movemanagement</h2>
-        
-        <div>
-            <div class="card" style="width:400px">
-                <img class="card-img-top" src="assets/images/ic_projects.png" alt="Projects image">
-                <div class="card-body">
-                  <h4 class="card-title">Projects</h4>
-                  <p class="card-text">Some example text.</p>
-                  <a href="#" class="btn btn-primary">Projects</a>
-                </div>
-              </div>
-        </div>
-       
+        <a href="#home"><i class="fa fa-fw fa-home"></i> Home</a>
+       <a href="#projects"><i class="fa fa-fw fa-envelope"></i> Projects</a>
+        <a href="#Settings"><i class="fa fa-fw fa-wrench"></i> Settings</a>
        
       </div>
       
+     
+        
       <script>
       function openNav() {
-        document.getElementById("mySidenav").style.width = "200px";
-        document.getElementById("main").style.marginLeft = "200px";
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("home").style.marginLeft = "250px";
         document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
       }
       
       function closeNav() {
-        document.getElementById("mySidenav").style.width = "100px";
-        document.getElementById("main").style.marginLeft= "100px";
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("home").style.marginLeft= "0";
         document.body.style.backgroundColor = "white";
       }
       </script>
+
+      
+        
+<div id ="home">
+  <div class="card" style="width: 200px;height: 200px;">
+      <img class="card-img-top" src="assets/images/ic_projects.png" style="height: 5px;border-inline-start-width: 5px;" alt="Projects image">
+      <div class="card-body">
+        <h4 class="card-title">Projects</h4>
+        <p class="card-text">Some example text.</p>
+        <a href="#" class="btn btn-primary">Projects</a>
+      </div>
+    </div>
+</div>
+
+
+</div>
+
          
 </body>
 </html>

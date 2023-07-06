@@ -1,39 +1,218 @@
+/* indexpage */
 .index_body{
  
   background-image: linear-gradient(to right, grey , white);
 }
-.header{
+.h{
     font-family: "Times New Roman", Times, serif;
     color: #f8d408;
     font-size: 6vw;
 }
-.div_right{
+.image{
+  min-height: 40vh;
+  min-width: 30vh;
+  float: right; 
+}
+.text{
+
+  font-family: "Times New Roman", Times, serif;
+      color: #000000;
+      font-size: 15em;
+  }
+/* signup and login page */
+.body_sign{
+  background-color: #ffffff;
+}
+.div_left{
   background-image: linear-gradient(to right, rgb(194, 190, 190) , rgb(228, 224, 12));;
+  
 }
 .contentDiv{
   height: 100vh;
   justify-content: center;
   align-items: center;
 }
-.image{
-    min-height: fit-content;
-    min-width: fit-content;
-    float: right; 
-}
-.text{
 
-font-family: "Times New Roman", Times, serif;
-    color: #000000;
-    font-size: 2vw;
-}
+
 .button_signup{
   background-color: #000000;
   color: aliceblue;
-  padding: 20em;
+  padding: 2em;
 }
 .text_sign{
   font-family: "Times New Roman", Times, serif;
     color: #000000;
-    font-size: 5vw;
+    font-size: 45px;
     font-weight: 700;
 }
+.divborder_right{
+  border-style: double;  
+  border-width: 5px;
+  border: #000000;
+  border-radius: 5em;
+  height: 100vh;
+}
+/* homepage */
+.sidenav {
+  height: 90%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 4;
+  left: 0;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #000000;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+/* header */
+.header {
+  height: 5em;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 20px 10px;
+}
+.header a.logo {
+  font-family: "Times New Roman", Times, serif;
+  color: #f8d408;
+  font-size: 33px;
+  font-weight: bold;
+
+}
+
+/* Change the background color on mouse-over */
+.header a:hover {
+  background-color: #aca7a7;
+  color: black;
+}
+/* side bar 2 */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color:#26394E ;
+}
+
+#menu {
+  height: 100%;
+  position: fixed;
+  background-color: #f3f1ec;
+  width: 300px;
+  transition: 1000ms all cubic-bezier(0.19, 1, 0.22, 1);
+  transform: translateX(-100%);
+  left: 60px;
+}
+
+#menu.expanded {
+  transform: translateX(0%);
+  left: 0px;
+}
+
+.menu-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#blob {
+  top: 0;
+  z-index: -1;
+  right: 60px;
+  transform: translateX(100%);
+  height: 100%;
+  position: absolute;
+}
+
+#blob-path {
+  height: 100%;
+  fill:  #FED057;
+}
+
+.hamburger {
+  right: 20px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;	
+}
+
+.hamburger .line {
+  width: 100%;
+  height: 4px;
+  background-color: #fff;
+  position: absolute;
+}
+
+.hamburger .line:nth-child(2) {
+  top: 50%;
+  margin-top: -2px;
+}
+
+.hamburger .line:nth-child(3) {
+  bottom: 0;
+}
+
+h1 {
+  position: fixed;
+  right: 0;
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+  width: 80%;
+  margin-left: 10%;
+  position: absolute;
+  top: 10px;
+}
+
+ul li {
+  color: #fff;
+  font-family: sans-serif;
+  padding: 20px 0;
+}
+
+h2 {
+  position: absolute;
+   left: 50%;
+  color: #fff;
+  margin: 0;
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+
