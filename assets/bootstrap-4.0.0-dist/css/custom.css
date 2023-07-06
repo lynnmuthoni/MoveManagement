@@ -1,0 +1,39 @@
+.index_body{
+ 
+  background-image: linear-gradient(to right, grey , white);
+}
+.header{
+    font-family: "Times New Roman", Times, serif;
+    color: #f8d408;
+    font-size: 6vw;
+}
+.div_right{
+  background-image: linear-gradient(to right, rgb(194, 190, 190) , rgb(228, 224, 12));;
+}
+.contentDiv{
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.image{
+    min-height: fit-content;
+    min-width: fit-content;
+    float: right; 
+}
+.text{
+
+font-family: "Times New Roman", Times, serif;
+    color: #000000;
+    font-size: 2vw;
+}
+.button_signup{
+  background-color: #000000;
+  color: aliceblue;
+  padding: 20em;
+}
+.text_sign{
+  font-family: "Times New Roman", Times, serif;
+    color: #000000;
+    font-size: 5vw;
+    font-weight: 700;
+}
