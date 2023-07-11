@@ -1,83 +1,54 @@
-$(window).load(function(){
-	var height = window.innerHeight,
-  x= 0, y= height/2,
-	curveX = 10,
-	curveY = 0,
-	targetX = 0,
-	xitteration = 0,
-	yitteration = 0,
-	menuExpanded = false;
-	
-	blob = $('#blob'),
-	blobPath = $('#blob-path'),
-
-	hamburger = $('.hamburger');
-
-	$(this).on('mousemove', function(e){
-		x = e.pageX;
-		
-		y = e.pageY;
-	});
-
-	$('.hamburger, .menu-inner').on('mouseenter', function(){
-		$(this).parent().addClass('expanded');
-		menuExpanded = true;
-	});
-
-	$('.menu-inner').on('mouseleave', function(){
-		menuExpanded = false;
-		$(this).parent().removeClass('expanded');
-	});
-
-	function easeOutExpo(currentIteration, startValue, changeInValue, totalIterations) {
-		return changeInValue * (-Math.pow(2, -10 * currentIteration / totalIterations) + 1) + startValue;
-	}
-
-	var hoverZone = 150;
-	var expandAmount = 20;
-	
-	function svgCurve() {
-		if ((curveX > x-1) && (curveX < x+1)) {
-			xitteration = 0;
-		} else {
-			if (menuExpanded) {
-				targetX = 0;
-			} else {
-				xitteration = 0;
-				if (x > hoverZone) {
-					targetX = 0;
-				} else {
-					targetX = -(((60+expandAmount)/100)*(x-hoverZone));
-				}			
-			}
-			xitteration++;
-		}
-
-		if ((curveY > y-1) && (curveY < y+1)) {
-			yitteration = 0;
-		} else {
-			yitteration = 0;
-			yitteration++;	
-		}
-
-		curveX = easeOutExpo(xitteration, curveX, targetX-curveX, 100);
-		curveY = easeOutExpo(yitteration, curveY, y-curveY, 100);
-
-		var anchorDistance = 200;
-		var curviness = anchorDistance - 40;
-
-		var newCurve2 = "M60,"+height+"H0V0h60v"+(curveY-anchorDistance)+"c0,"+curviness+","+curveX+","+curviness+","+curveX+","+anchorDistance+"S60,"+(curveY)+",60,"+(curveY+(anchorDistance*2))+"V"+height+"z";
-
-		blobPath.attr('d', newCurve2);
-
-		blob.width(curveX+60);
-
-		hamburger.css('transform', 'translate('+curveX+'px, '+curveY+'px)');
+document.addEventListener("DOMContentLoaded", function(event) {
+   
+    const showNavbar = (toggleId, navId, bodyId, headerId) =>{
+    const toggle = document.getElementById(toggleId),
+    nav = document.getElementById(navId),
+    bodypd = document.getElementById(bodyId),
+    headerpd = document.getElementById(headerId)
     
-    $('h2').css('transform', 'translateY('+curveY+'px)');
-		window.requestAnimationFrame(svgCurve);
-	}
+    // Validate that all variables exist
+    if(toggle && nav && bodypd && headerpd){
+    toggle.addEventListener('click', ()=>{
+    // show navbar
+    nav.classList.toggle('show')
+    // change icon
+    toggle.classList.toggle('bx-x')
+    // add padding to body
+    bodypd.classList.toggle('body-pd')
+    // add padding to header
+    headerpd.classList.toggle('body-pd')
+    })
+    }
+    }
+    
+    showNavbar('header-toggle','nav-bar','body-pd','header')
+    
+    /*===== LINK ACTIVE =====*/
+    const linkColor = document.querySelectorAll('.nav_link')
+    
+    function colorLink(){
+    if(linkColor){
+    linkColor.forEach(l=> l.classList.remove('active'))
+    this.classList.add('active')
+    }
+    }
+    linkColor.forEach(l=> l.addEventListener('click', colorLink))
+    
+     // Your code to run since DOM is loaded and ready
+    });
 
-	window.requestAnimationFrame(svgCurve);
-	
-});
+    // Projects page
+    // tabs
+    (function($) {
+
+      var tabs =  $(".tabs li a");
+      
+      tabs.click(function() {
+        var content = this.hash.replace('/','');
+        tabs.removeClass("active");
+        $(this).addClass("active");
+        $("#content").find('p').hide();
+        $(content).fadeIn(200);
+      });
+    
+    })(jQuery);
