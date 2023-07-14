@@ -49,14 +49,16 @@
   }
 /* signup and login page */
 .divSignUp{
-  background-color: #ffffff;
- 
+  background: transparent;
+  border-radius: 15px;
+  background-color:#ffffff;
   
-  margin:0;
+  margin:0px;
 }
 .divsright{
   background-color: #ffffff;
   padding:10px 10px 10px 10px;
+  margin: 0px;
 
 }
 .divsleft{
@@ -108,7 +110,7 @@ display: flex;
 /*  sign reg start */
 input[type=text], input[type=password], input[type=email]{
   width: 100%;
-  margin: 5px 0;
+  margin: 4px 0;
   border-radius: 20px;
   padding: 5px ;
   align-items:center;
@@ -147,7 +149,7 @@ form{
 
 input{
   width: 100%;
-  margin: 10px 0;
+  margin: 9px 0;
   border-radius: 5px;
   padding: 15px 18px;
   box-sizing: border-box;
@@ -264,8 +266,7 @@ border-radius:15px ;
 
 
 .container {
-  
-  width: 100%;
+  width: fit-content;
   height: auto;
   margin: auto 2;
   display: flex;
@@ -273,6 +274,7 @@ border-radius:15px ;
 	position: relative;
 	align-content: space-around;
   z-index: 1;
+   
 }
 
 .container .card {
@@ -286,6 +288,7 @@ border-radius:15px ;
 	justify-content: center;
 	align-items: center;
 	backdrop-filter: blur(10px);
+  margin: 25px  50px 75px 2px ; 
 }
 
 .container .card .content {
@@ -298,11 +301,12 @@ border-radius:15px ;
 }
 
 .container .card:hover .content {
-	transform: translateY(-50px);
+	transform: translateY(-30px);
 }
 
 .container .card .content .imgBx {
 	position: relative;
+  text-align:center;
 	width: 50px;
 	height: 50px;
 	overflow: hidden;
@@ -311,7 +315,7 @@ border-radius:15px ;
 .container .card .content .imgBx img {
 	position: absolute;
 	top: 0;
-	left: 0;
+	left: 20px;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
@@ -336,28 +340,33 @@ border-radius:15px ;
 }
 
 .container .card .sci {
-	position: absolute;
-	bottom: 30px;
+  
+  text-align:center;
+	position:absolute;
+	bottom: 10px;
 	display: flex;
+  justify-content:center;
 }
 
 .container .card .sci li {
+  text-align:center;
 	list-style: none;
-	margin: 0 10px;
-	transform: translateY(20px);
+	margin: 0 ;
+	transform: translateY(10px);
 	transition: 0.5s;
 	opacity: 0;
 }
 
 .container .card:hover .sci li {
+  text-align:center;
 	transform: translateY(0px);
 	opacity: 1;
 }
 
 .container .card .sci li a {
-	color: #fff;
+	color: #ffdc5c;
 	font-size: 40px;
-  bottom: 5px;
+  bottom: 4px;
 }
 
 /* Projects page */
@@ -620,3 +629,65 @@ body {
   width:80px;
 }
 /* profile page end */
+/* Settings page start*/
+settingbody{
+  background-color:#688986;
+}
+
+/* The side navigation menu */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 150px;
+  background: transparent;
+  position: fixed;
+  height: 50%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #ffdc5c;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+/* Settings page end */
