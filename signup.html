@@ -6,40 +6,66 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SignUp</title>
+    <script src="assets/bootstrap-4.0.0-dist/js/customize.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="assets/bootstrap-4.0.0-dist/css/custom.css">
-    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+ 
 </head>
 <body class="body_sign">
-
-    <div class=" row contentDiv">
-        <div style="height: 100%;" class="col-6 h-100 div_left">
-        <div class="col-6 p-5 h-100 ">
-            <h5 class="text_sign">SignUp here</h5><br>
-            <h5 class="text_sign">Movemanagement</h5>
-
+    <div class=" row divSignUp col-10">
+        <div class="col-6 divsleft h-100" style="border-radius: 10px;" >
+          <img style="height :23em; width: 22em;" src="assets/images/planning.png" alt="">
         </div>
-        </div>
-
-        
-            <div class="col-6 h-100 p-3 divborder_right ">
-
-                <div class="col-10 contentDiv">
+        <div class="col-6 divsright">            
+                    <form action="">
+                        <!-- Headings for the form -->
+                        <div class="headingsContainer">
+                            <h4 class="text_sign">Sign Up</h4>
+                        </div>
                 
-                <form style="border-style: solid; border-radius: 8px; border-color:  black; border-width:3px; "method="post" action="">
-                    <label>Username</label><br>
-                    <input name="u_name" class="form-control" type="text">
-                    <label>Email</label><br>
-                    <input name="u_email" class="form-control" type="email">
-                    <label>Password</label><br>
-                    <input name="u_pass" class="form-control" type="password"> <br><br>
-                    <input name="btn_reg" class="btn btn-dark" value="Register" type="submit">
-                </form>
-            </div>
+                        <!-- Main container for all inputs -->
+                        <div class="mainContainer">
+                            <!-- Username -->
+                            <label for="username">Username</label>
+                            <input type="text" placeholder="Enter Username" name="username" required>
+                
+                             <!-- Useremail -->
+                             <label for="useremail">Useremail</label>
+                             <input type="email" placeholder="Enter email" name="useremail" required>
+                 
+                            <br>
+                
+                            <!-- Password -->
+                            <label for="pswrd"> Password</label>
+                            <input type="password" placeholder="Enter Password" name="pswrd" required>
+                
+                            <label for="cpswrd">Confirm Password</label>
+                            <input type="password" placeholder="Reenter Password" name="cpswrd" required>
+                
+                            <!-- sub container for the checkbox and forgot password link -->
+                            <div class="subcontainer">
+                                <p class="forgotpsd"> <a href="#">Forgot Password?</a></p>
+                            </div>
+                
+                
+                            <!-- Submit button -->
+                            <button type="submit">SignUp</button><br>
+                
+                            <!-- Sign up link -->
+                            <p class="register">Already a member?  <a class="" href="login.html">Login here!</a></p>
+                
+                        </div>
+                
+                    </form>
+            
         </div>
+
+
     </div>
 </body>
 </html>

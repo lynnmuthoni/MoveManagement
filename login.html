@@ -6,38 +6,59 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
+    <script src="assets/bootstrap-4.0.0-dist/js/customize.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="assets/bootstrap-4.0.0-dist/css/custom.css">
-    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+ 
 </head>
 <body class="body_sign">
-
-    <div class=" row contentDiv">
-        
-        <div class="col-6  h-100 div_left">
-            <br>
-            <h5 class="text_sign">Movemanagement</h5><br><br>
-            <h5 class="text_sign">Login here</h5>
-
-
+    <div class=" row divSignUp col-10">
+        <div class="col-6 divsleft h-100" style="border-radius: 10px;" >
+          <img style="height :23em; width: 22em;" src="assets/images/planning.png" alt="">
+        </div>
+        <div class="col-6 divsright">            
+                    <form action="">
+                        <!-- Headings for the form -->
+                        <div class="headingsContainer">
+                            <h4 class="text_sign">Sign in</h4>
+                            <p >Sign in with your username and password</p>
+                        </div>
+                
+                        <!-- Main container for all inputs -->
+                        <div class="mainContainer">
+                            <!-- Username -->
+                            <label for="username"> Username</label>
+                            <input type="text" placeholder="Enter Username" name="username" required>
+                
+                            <br><br>
+                
+                            <!-- Password -->
+                            <label for="pswrd"> Password</label>
+                            <input type="password" placeholder="Enter Password" name="pswrd" required>
+                
+                            <!-- sub container for the checkbox and forgot password link -->
+                            <div class="subcontainer">
+                                <p class="forgotpsd"> <a href="#">Forgot Password?</a></p>
+                            </div>
+                
+                
+                            <!-- Submit button -->
+                            <button type="submit">Login</button><br>
+                
+                            <!-- Sign up link -->
+                            <p class="register">Not a member?  <a class="" href="signup.html">Register here!</a></p>
+                
+                        </div>
+                
+                    </form>
+            
         </div>
 
-        
-            <div class="col-6  div_right" style="display: flex; justify-content: center; align-items: center; position: relative;">
-                <div class="col-9 " style="border-radius: 20px; border:1.5px  solid black; position: relative;" >
-                <form method="post" action="">
-                    <br>
-                    <label>Username</label>
-                    <input name="u_name" class="form-control" type="text">
-                    <label>Password</label>
-                    <input name="u_pass" class="form-control" type="password"> <br><br>
-                    <input  name="btn_reg" style="margin-right: 50px; margin-bottom: 60px;" class="btn btn-dark button_signup " value="Login" type="submit">
-                </form>
-                </div>
-            </div>
 
     </div>
 </body>

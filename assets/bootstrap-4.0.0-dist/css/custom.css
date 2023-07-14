@@ -23,6 +23,24 @@
   min-width: 40vh;
   float: right; 
 }
+.abutton{
+  display: inline-block;
+  padding: 10px 20px;
+  text-align:center;
+  text-decoration;none;
+  color: #ffffff;
+  background-color: #000000;
+  border-radius:10px;
+  outline:none;
+  transition:0.3s;
+  width:200px;
+  height:70 px;
+
+}
+.abutton:hover{
+  background-color: #ffffff;
+  color: #000000;
+}
 .text{
   
 
@@ -30,8 +48,27 @@
       color: #000000; 
   }
 /* signup and login page */
-.body_sign{
+.divSignUp{
   background-color: #ffffff;
+ 
+  
+  margin:0;
+}
+.divsright{
+  background-color: #ffffff;
+  padding:10px 10px 10px 10px;
+
+}
+.divsleft{
+  background-image:url(assets/images/back_Profile);
+  background-repeat:no-repeat;
+  height:100%;
+  width:100%;
+}
+.body_sign{
+ 
+  background-image: linear-gradient(to right, rgb(194, 190, 190) , rgb(228, 224, 12));;
+ 
 }
 .div_left{
   background-image: linear-gradient(to right, rgb(194, 190, 190) , rgb(228, 224, 12));;
@@ -68,6 +105,62 @@ display: flex;
   border-radius: 5em;
   height: 100vh;
 }
+/*  sign reg start */
+input[type=text], input[type=password], input[type=email]{
+  width: 100%;
+  margin: 5px 0;
+  border-radius: 20px;
+  padding: 5px ;
+  align-items:center;
+  text-align:center;
+ 
+}
+
+button {
+  background-color: #030804;
+  color: white;
+  padding: 5px;
+  border-radius: 20px;
+  margin: 5px 0;
+  width: 100%;
+  font-size: 15px;
+}
+
+button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+h1{
+  text-align: center;
+}
+
+form{
+  width:80%;
+  margin: auto;
+  color:black;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: #fffffg;
+  border-radius: 20px;
+  
+}
+
+input{
+  width: 100%;
+  margin: 10px 0;
+  border-radius: 5px;
+  padding: 15px 18px;
+  box-sizing: border-box;
+}
+.headingsContainer{
+  text-align: center;
+}
+.mainContainer{
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* sign reg end */
 /* homepage */
 .sidenav {
  
@@ -174,7 +267,7 @@ border-radius:15px ;
   
   width: 100%;
   height: auto;
-  margin: auto 1;
+  margin: auto 2;
   display: flex;
   justify-content: left;
 	position: relative;
@@ -269,121 +362,61 @@ border-radius:15px ;
 
 /* Projects page */
 /* tabs */
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400&subset=latin,latin-ext);
 
-.wrap {
-  margin: 0 auto;
-}
-ul.tabs {
-  width: 800px;
-  height: 100px;
-  margin: 0 auto;
-  list-style: none;
+.tab {
+  align-items:center;
+  background: #343436;
+  width: auto;
+  height: 70px;
   overflow: hidden;
-  padding: 0;
+  background-color: #75456;
+  border-radius: 15px;
 }
-ul.tabs li {  
-  float: left;
-  width: 400px;
 
-  
-}
-ul.tabs li a {
-  position: relative;
-  display: block;
-  height: 80px;
-  margin-top: 40px;
-  padding: 10px 0 0 0;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 18px;
-  text-align: center; 
-  text-decoration: none;
-  color: #ffffff;
-  background: #6edeef;
-  -webkit-box-shadow: 8px 12px 25px 2px rgba(0,0,0,0.4);
-     -moz-box-shadow: 8px 12px 25px 2px rgba(0,0,0,0.4);
-          box-shadow: 8px 12px 25px 2px rgba(0,0,0,0.4);
-            border: 0px solid #000000;
-  -webkit-transition: padding 0.2s ease, margin 0.2s ease;
-       -moz-transition: padding 0.2s ease, margin 0.2s ease;
-         -o-transition: padding 0.2s ease, margin 0.2s ease;
-        -ms-transition: padding 0.2s ease, margin 0.2s ease;
-            transition: padding 0.2s ease, margin 0.2s ease;
-}
-.tabs li:first-child a {
-  z-index: 3;
-  -webkit-border-top-left-radius: 8px;
--moz-border-radius-topleft: 8px;
-border-top-left-radius: 8px;
-}
-.tabs li:nth-child(2) a {
-  z-index: 2;
-}
-.tabs li:last-child a {
-  z-index: 1;
-  -webkit-box-shadow: 2px 8px 25px -2px rgba(0,0,0,0.3);
-     -moz-box-shadow: 2px 8px 25px -2px rgba(0,0,0,0.3);
-          box-shadow: 2px 8px 25px -2px rgba(0,0,0,0.3);
-  -webkit-border-top-right-radius: 8px;
--moz-border-radius-topright: 8px;
-border-top-right-radius: 8px;
-}
-ul.tabs li a:hover {
-  margin: 35px 0 0 0;
-  padding: 10px 0 5px 0;
-}
-ul.tabs li a.active {
-  margin: 30px 0 0 0;
-  padding: 10px 0 10px 0;
-  background: #545f60;
-  color: #6edeef;
-  /*color: #ff6831;*/
-  z-index: 4;
+/* Style the buttons inside the tab */
+.tab button {
+  font-weight: bold;
+  text-align: center;
+  background: #343436;
+  color: #fff;
+  border-radius: 15px;
+  height: 70px;
+  float: center;
+  border: none;
   outline: none;
-}
-.group:before,
-.group:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
-}
-.group:after {
-    clear: both;
-}
-#content {
-  width: 390px;
-  height: 200px;
-  margin: 0 auto;
-  background: #545f60;
--webkit-box-shadow: 2px 8px 25px -2px rgba(0,0,0,0.3);
-       -moz-box-shadow: 2px 8px 25px -2px rgba(0,0,0,0.3);
-            box-shadow: 2px 8px 25px -2px rgba(0,0,0,0.3);
-  -webkit-border-bottom-right-radius: 8px;
--webkit-border-bottom-left-radius: 8px;
--moz-border-radius-bottomright: 8px;
--moz-border-radius-bottomleft: 8px;
-border-bottom-right-radius: 8px;
-border-bottom-left-radius: 8px;
-}
-div{
-  font-family: 'Open Sans', sans-serif;
-  padding: 30px 40px;
-  color: #ffffff;
-  line-height: 26px;
+  cursor: pointer;
+  width: 49.7%;
+  transition: 0.3s;
   font-size: 18px;
-  margin: 0;
-}
-#one {
-  
-}
-#two {
-  
-}
-#three {
   
 }
 
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background: #fff;
+  color: #000;
+}
 
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ffd700;
+}
 
+/* Style the tab content */
+.tabcontent {
+  width:auto;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  display: none;
+  border: 1px solid #ccc;
+  border-top: none;
+  background-color:#ffffff ;
+  border-radius:15px;
+  margin: 1 auto;
+  
+}
+
+/* tabs end */
 /* table */
 
 
@@ -474,7 +507,7 @@ pre{
   
   width: fit-content;
   height: auto;
-  margin: auto 1;
+  margin: auto 2;
   display: flex;
   justify-content: left;
 	position: relative;
@@ -494,6 +527,7 @@ pre{
 	display: flex;
 	justify-content: center;
 	align-items: center;
+ margin: 25px  50px 75px 2px ; 
 	
 }
 
@@ -545,3 +579,44 @@ pre{
 
 
 /* doc cards end */
+/* profile page */
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.bg-black {
+  background: #000;
+}
+
+.skill-block {
+  width: 30%;
+}
+
+@media (min-width: 991px) and (max-width:1200px) {
+  .skill-block {
+    padding: 32px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .skill-block {
+    padding: 56px !important;
+  }
+}
+
+body {
+  background-color: #eeeeee;
+}
+.profileback{
+  filter:blur(3px);
+  background-image:url("assets/images/back_Profile.jpg");
+  background-repeat:no-repeat;
+}
+.profileimage{
+  border-radius: 50%;
+  height:80px;
+  width:80px;
+}
+/* profile page end */

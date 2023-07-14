@@ -39,16 +39,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Projects page
     // tabs
-    (function($) {
-
-      var tabs =  $(".tabs li a");
-      
-      tabs.click(function() {
-        var content = this.hash.replace('/','');
-        tabs.removeClass("active");
-        $(this).addClass("active");
-        $("#content").find('p').hide();
-        $(content).fadeIn(200);
-      });
+    function openCity(evt, cityName) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
     
-    })(jQuery);
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+    
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+    
+      // Show the current tab, and add an "active" class to the button that opened the tab
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
