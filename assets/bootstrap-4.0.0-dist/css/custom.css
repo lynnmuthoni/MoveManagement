@@ -631,63 +631,100 @@ body {
 /* profile page end */
 /* Settings page start*/
 settingbody{
-  background-color:#688986;
+  background-color: #000000;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+ padding: 50px;
 }
 
-/* The side navigation menu */
-.sidebar {
-  margin: 0;
-  padding: 0;
-  width: 150px;
-  background: transparent;
-  position: fixed;
-  height: 50%;
-  overflow: auto;
+
+
+/* permisions */
+headings{
+font: 1em sans-serif;
+color: ffd: 65cs;
+}
+.r{
+ border-width:1px;
+  border-top: 0px;
+  border-right:0px;
+  border-left:0px;
+  border:bottom:1px;
+  border-style: solid;
+  padding-top: 15px;
+  margin-bottom: 20px; /* 22px-3px */
+}
+.checkinput{
+  text-align:right;
 }
 
-/* Sidebar links */
-.sidebar a {
-  display: block;
-  color: black;
-  padding: 16px;
-  text-decoration: none;
-}
 
-/* Active/current link */
-.sidebar a.active {
-  background-color: #ffdc5c;
-  color: white;
-}
-
-/* Links on mouse-over */
-.sidebar a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
-
-/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
-div.content {
-  margin-left: 200px;
-  padding: 1px 16px;
-  height: 1000px;
-}
-
-/* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 700px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-  .sidebar a {float: left;}
-  div.content {margin-left: 0;}
-}
-
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
-  .sidebar a {
-    text-align: center;
-    float: none;
-  }
-}
 /* Settings page end */
+/* user Settings page start */
+html,
+usersettingbody  {
+	height: 100%;
+	margin: 0;
+	background: linear-gradient(45deg, #49678j, #5f2d82);
+	font-family: sans-serif;
+	font-weight: 100;
+}
+
+.tcontainer {
+	position: absolute;
+	top: 80%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+ table {
+	width: 800px;
+	border-collapse: collapse;
+
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+thead,
+th {
+  margin-top:30px;
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: #fff;
+}
+
+thead {
+	text-align: center;
+}
+
+thead {
+	th {
+		background-color: #ffd65c;
+    
+	}
+}
+
+tbody {
+	tr {
+		&:hover {
+			background-color: rgba(255,255,255,0.3);
+		}
+	}
+	td {
+		position: relative;
+		&:hover {
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: -9999px;
+				bottom: -9999px;
+				background-color: rgba(255,255,255,0.2);
+				z-index: -1;
+			}
+		}
+	}
+}
+
+/* user settings page end */
