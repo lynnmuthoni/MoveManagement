@@ -33,13 +33,13 @@
                         <div class="mainContainer">
                             <!-- Username -->
                             <label for="username"> Username</label>
-                            <input type="text" placeholder="Enter Username" name="username" required>
+                            <input id="username"type="text" onChange="(e)=>setUsername(e.target.value)" placeholder="Enter Username" name="username"    required>
                 
                             <br>
                 
                             <!-- Password -->
                             <label for="pswrd"> Password</label>
-                            <input type="password" placeholder="Enter Password" name="pswrd" required>
+                            <input id= "password"type="password"  onChange="(e)=>setUserpassword(e.target.value)" placeholder="Enter Password"  name="pswrd" required>
                 
                             <!-- sub container for the checkbox and forgot password link -->
                             <div class="subcontainer">
@@ -48,7 +48,7 @@
                 
                 
                             <!-- Submit button -->
-                            <button type="submit">Login</button><br><br>
+                            <button onclick="Login()" type="submit">Login</button><br><br>
                 
                             <!-- Sign up link -->
                             <p class="register">Not a member?  <a style="color: darkgoldenrod;" class="" href="signup.html">Register here!</a></p>

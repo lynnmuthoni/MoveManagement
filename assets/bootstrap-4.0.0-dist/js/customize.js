@@ -59,3 +59,202 @@ document.addEventListener("DOMContentLoaded", function(event) {
       document.getElementById(cityName).style.display = "block";
       evt.currentTarget.className += " active";
     }
+   
+    //LOGIN PAGE
+    function Login(){
+      
+      // Get the value of the input field with id="username"
+      const username = document.getElementById("username").value.trim();
+      
+      // Get the value of the input field with id="password"
+      const password = document.getElementById("password").value.trim();
+      // Get the value of the input field with id="confirmpassword"
+      
+      // Regular expression to check if the password is strong enough
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+      // Check if the username is empty
+      if (username == "") {
+        alert("Username field must be filled out");
+        return false;
+      }
+      
+          // Check if the password is empty
+      if (password == "") {
+        alert("Password field must be filled out");
+        return false;
+      }
+      // Check if the password is strong enough
+      
+          
+    
+          // If all checks pass, return true
+      // Send a request to the server to check the user's credentials
+      // If the credentials are correct, return true to submit the form
+      // If the credentials are incorrect, display an error message and return false to prevent the form from being submitted
+    
+        
+        // Prepare the data to send to the login API
+        const loginData = {
+          username: name,
+          password: password
+      };
+
+      // Make the API call to obtain the access token
+      fetch('http://127.0.0.1:8000/movemanagement/dj-rest-auth/login/', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(loginData)
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Login failed. Invalid credentials.');
+          }
+          return response.json();
+      })
+      .then(data => {
+          // Handle the success response from the API
+          const accessToken = data.access_token;
+          console.log('Access Token:', accessToken);
+
+          // Save the access token, e.g., in a session or local storage
+          // You can use sessionStorage or localStorage depending on your requirements
+          sessionStorage.setItem('accessToken', accessToken);
+
+          // Redirect the user to the dashboard or homepage
+          window.location.href = 'homepage.html'; // Replace 'dashboard.html' with the URL of your dashboard/homepage
+      })
+      .catch(error => {
+          // Handle errors from the API or invalid credentials
+          console.error('Login failed:', error);
+          // Display an error message to the user here.
+      });
+  };
+
+       
+        
+    //SIGNUP PAGE
+    $(document).ready(function() {
+      // Get the form element by its ID
+      const form = document.getElementById('signupForm');
+  
+      // Add an event listener to the form for form submission
+      form.addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent the form from submitting normally
+  
+      // Get the value of the input field with id="username"
+      const username = document.getElementById("username").value.trim();
+      // Get the value of the input field with id="email"
+      const email = document.getElementById("email").value.trim();
+      // Get the value of the input field with id="password"
+      const password = document.getElementById("password").value.trim();
+      // Get the value of the input field with id="confirmpassword"
+      const passwordConfirm = document.getElementById("confirmpassword").value.trim();
+      // Regular expression to check if the email is in the correct format
+      var emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+      // Regular expression to check if the password is strong enough
+      var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+      // Check if the username is empty
+      if (username == "") {
+        alert("Username field must be filled out");
+        return false;
+      }
+      // Check if the email is empty
+      if (email == "") {
+        alert("Email field must be filled out");
+        return false;
+      }
+      // Check if the email is in the correct format
+      if (!email.match(emailRegex)) {
+        alert("Please enter a valid email address");
+        return false;
+      }
+          // Check if the password is empty
+      if (password == "") {
+        alert("Password field must be filled out");
+        return false;
+      }
+      // Check if the password is strong enough
+      if (!password.match(passwordRegex)) {
+        alert("Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, and one number");
+        return false;
+      }
+           // Check if the password confirmation is empty
+           if (passwordConfirm == "") {
+            alert("Password confirmation field must be filled out");
+            return false;
+          }
+          // Check if the passwords match
+          if (password != passwordConfirm) {
+            alert("Passwords do not match");
+            return false;
+          }
+ // Prepare the data to send to the API
+         const userData = {
+             username: name,
+             email: email,
+             password: password
+         };
+ 
+         
+        // Make the API call using the Fetch API
+        fetch('http://127.0.0.1:8000/movemanagement/register/', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(userData)
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(data => {
+          // Handle the success response from the API
+          console.log('Signup successful:', data);
+          // Redirect the user to the login page
+          window.location.href = 'login.html'; // Replace 'login.html' with the actual login page URL
+      })
+      .catch(error => {
+          // Handle errors from the API
+          console.error('Signup failed:', error);
+          // You can display an error message to the user here.
+      });
+  });
+});
+
+      //  // function Register (){
+      //     const [username, setUserName] = useState("");
+      //     const [useremail, setUserEmail] = useState("");
+      //     const [password, setPassword] = useState("");
+      //     const history=useHistory();
+
+      //     async function signUp(){
+      //       let item={name,email,password}
+      //       console.warn(item)
+
+      //       let result =await fetch('https://127.0.0.1:8000/movemanagement/register/', {
+      //         method: 'POST',
+      //         body:JSON.stringify(item)
+      //         headers: {
+      //           "Content-Type": 'application/json'
+      //           'Accept':'application/json'
+  
+  
+      //         }
+      //     })
+      //     result= await result.json()
+      //     localStorage.setItem("user-info",JSON.stringify(result))
+      //     window.location.href = "/login";
+      //     history.push("/add")
+
+      //   }
+      // //
+
+       
+
+      

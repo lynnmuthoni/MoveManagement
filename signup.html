@@ -30,22 +30,27 @@
                 
                         <!-- Main container for all inputs -->
                         <div class="mainContainer">
+                            <form action="post" id="signupForm" onsubmit="validateAndSubmit(event)">
                             <!-- Username -->
                             <label for="username">Username</label>
-                            <input type="text" placeholder="Enter Username" name="username" required>
+                            <input type="text" placeholder="Enter Username" id="username" name="username"  required>
                 
                              <!-- Useremail -->
                              <label for="useremail">Useremail</label>
-                             <input type="email" placeholder="Enter email" name="useremail" required>
+                             <input type="email" placeholder="Enter email" id="email" name="useremail" required>
                  
                             <br>
                 
                             <!-- Password -->
                             <label for="pswrd"> Password</label>
-                            <input type="password" placeholder="Enter Password" name="pswrd" required>
+                            <input type="password"  placeholder="Enter Password" id="password" name="pswrd" required>
                 
                             <label for="cpswrd">Confirm Password</label>
-                            <input type="password" placeholder="Reenter Password" name="cpswrd" required>
+                            <input type="password"
+                             
+                             placeholder="Reenter Password"
+                              id="confirmpassword"
+                               name="cpswrd" required>
                 
                             <!-- sub container for the checkbox and forgot password link -->
                             <div class="subcontainer">
@@ -54,11 +59,11 @@
                 
                 
                             <!-- Submit button -->
-                            <button type="submit">SignUp</button><br>
+                            <button  onclick = "SignUp()" type="submit">SignUp</button><br>
                 
                             <!-- Sign up link -->
                             <p class="register">Already a member?  <a class="" href="login.html">Login here!</a></p>
-                
+                        </form>
                         </div>
                 
                     </form>
