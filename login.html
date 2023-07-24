@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
-    <script src="assets/bootstrap-4.0.0-dist/js/customize.js"></script>
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -33,7 +33,7 @@
                         <div class="mainContainer">
                             <!-- Username -->
                             <label for="username"> Username</label>
-                            <input id="username"type="text" onChange="(e)=>setUsername(e.target.value)" placeholder="Enter Username" name="username"    required>
+                            <input id="name"type="text" onChange="(e)=>setUsername(e.target.value)" placeholder="Enter Username" name="username"    >
                 
                             <br>
                 
@@ -61,5 +61,66 @@
 
 
     </div>
+    <script>
+        function Login(){
+      
+      // Get the value of the input field with id="username"
+      const name = document.getElementById("name").value.trim();
+      
+      // Get the value of the input field with id="password"
+      const password = document.getElementById("password").value;
+      // Get the value of the input field with id="confirmpassword"
+      
+      // Check if the username is empty
+      if (name == "") {
+        alert("Username field must be filled out");
+        return false;
+      }
+      
+          // Check if the password is empty
+      if (password == "") {
+        alert("Password field must be filled out");
+        return false;
+      }
+      else{
+    
+        
+        // Prepare the data to send to the login API
+        const loginData = {
+            name:name,
+            password: password
+        };
+
+        // Make the API call to login (assuming it returns a JSON response)
+        fetch('http://192.168.0.102:8000/login/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(loginData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Login failed. Invalid credentials.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Handle the success response from the API
+            console.log('Login successful:', data);
+
+            // Redirect the user to the dashboard or homepage
+            window.location.href = 'homepage.html'; 
+        })
+        .catch(error => {
+            // Handle errors from the API or invalid credentials
+            console.error('Login failed:', error);
+           
+        });
+    }
+}
+;
+        
+    </script>
 </body>
 </html>

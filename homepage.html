@@ -105,12 +105,42 @@
     </section>
   <!--Container Main start-->
  
-      <section>
+      <section id="projectData">
           <div class=" bar w3-hover-black w3-bar w3-greyheight-100 bg-light ">
             <div class="w3-bar-item "> <a href="#" class="w3-bar-item "> 1. PROJECT NAME</a></div>
             
           </div>
         </section>
+        <script>
+          // Function to fetch data from the API and display it on the page
+          function fetchData() {
+              fetch("http://192.168.0.102:8000/project/")
+                  .then(response => response.json())
+                  .then(data => {
+                      // Assuming data is an array of objects
+                      const projectDataContainer = document.getElementById('projectData');
+                      let html = '<ul>';
+  
+                      // Loop through the data and create a list item for each project
+                      data.forEach(project => {
+                          html += `<li>${project.name} </li>`;
+                          html +=  `<li> <div class=" bar w3-hover-black w3-bar w3-greyheight-100 bg-light ">
+            <div class="w3-bar-item "> <a href="#" class="w3-bar-item "> ${project.name} - ${project.description}</a></div>
+            
+          </div> </li>`
+                      });
+  
+                      html += '</ul>';
+                      projectDataContainer.innerHTML = html;
+                  })
+                  .catch(error => {
+                      console.error('Error fetching data:', error);
+                  });
+          }
+  
+          // Call the fetchData function when the page loads
+          window.onload = fetchData;
+      </script>
   
   <!--Container Main end-->
 

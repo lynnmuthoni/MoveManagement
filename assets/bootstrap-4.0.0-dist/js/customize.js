@@ -1,3 +1,5 @@
+console.log("Anything")
+
 document.addEventListener("DOMContentLoaded", function(event) {
    
     const showNavbar = (toggleId, navId, bodyId, headerId) =>{
@@ -83,14 +85,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         alert("Password field must be filled out");
         return false;
       }
-      // Check if the password is strong enough
       
-          
-    
-          // If all checks pass, return true
-      // Send a request to the server to check the user's credentials
-      // If the credentials are correct, return true to submit the form
-      // If the credentials are incorrect, display an error message and return false to prevent the form from being submitted
+      
+        
     
         
         // Prepare the data to send to the login API
@@ -100,8 +97,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       };
 
       // Make the API call to obtain the access token
-      fetch('http://127.0.0.1:8000/movemanagement/dj-rest-auth/login/', {
-          method: 'POST',
+      fetch('http://192.168.1.7:8000/login/', {
+          method: 'GET',
           headers: {
               'Content-Type': 'application/json'
           },
@@ -123,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           sessionStorage.setItem('accessToken', accessToken);
 
           // Redirect the user to the dashboard or homepage
-          window.location.href = 'homepage.html'; // Replace 'dashboard.html' with the URL of your dashboard/homepage
+          window.location.href = 'homepage.html'; 
       })
       .catch(error => {
           // Handle errors from the API or invalid credentials
@@ -162,45 +159,47 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return false;
       }
       // Check if the email is empty
-      if (email == "") {
+     else if (email == "") {
         alert("Email field must be filled out");
         return false;
       }
       // Check if the email is in the correct format
-      if (!email.match(emailRegex)) {
+      else if (!email.match(emailRegex)) {
         alert("Please enter a valid email address");
         return false;
       }
           // Check if the password is empty
-      if (password == "") {
-        alert("Password field must be filled out");
+      else if (password == "") {
+        alert(" field must be filled out");
         return false;
       }
       // Check if the password is strong enough
-      if (!password.match(passwordRegex)) {
+     else if (!password.match(passwordRegex)) {
         alert("Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, and one number");
         return false;
       }
            // Check if the password confirmation is empty
-           if (passwordConfirm == "") {
+         else  if (passwordConfirm == "") {
             alert("Password confirmation field must be filled out");
             return false;
           }
           // Check if the passwords match
-          if (password != passwordConfirm) {
+         else if (password != passwordConfirm) {
             alert("Passwords do not match");
             return false;
-          }
+          } else
+          {
  // Prepare the data to send to the API
          const userData = {
              username: name,
              email: email,
              password: password
+            
          };
- 
+         const history=useHistory();
          
         // Make the API call using the Fetch API
-        fetch('http://127.0.0.1:8000/movemanagement/register/', {
+        fetch('http://192.168.0.102:8000/api/register/', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
@@ -217,14 +216,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
           // Handle the success response from the API
           console.log('Signup successful:', data);
           // Redirect the user to the login page
-          window.location.href = 'login.html'; // Replace 'login.html' with the actual login page URL
+          window.location.href = 'login.html'; 
+          history.push("/add")
       })
       .catch(error => {
           // Handle errors from the API
           console.error('Signup failed:', error);
-          // You can display an error message to the user here.
+         
       });
-  });
+    }});
 });
 
       //  // function Register (){

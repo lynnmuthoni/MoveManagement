@@ -41,7 +41,7 @@
     </div>
      
     <!--Container Main start-->
-    <h2 style="font-size: x-large;" class="he">"PROJECT NAME"</h2>
+    <h2 style="font-size: x-large;" class="he">${project.name}</h2>
      <!-- Cards start -->
      <section>
   
@@ -99,6 +99,29 @@
   <h3>Users</h3>
     
    <!-- tables start -->
+
+   
+   <script>
+    // Function to fetch data from the JSONPlaceholder API and display it as bars on the page
+    function fetchUserData() {
+        fetch("http://192.168.0.102:8000/project/")
+            .then(response => response.json())
+            .then(data => showInfo(data) )
+            {
+                // Assuming data is an array of user objects
+                const userDataContainer = document.getElementById('userData');
+
+                // Loop through the data and create a bar for each user
+                data.forEach(user => {
+                    console.table(username, password);
+                });
+
+    }
+  }
+
+    // Call the fetchUserData function when the page loads
+    window.onload = fetchUserData;
+</script>
    <table id="0">
     <header class="st_table_header">
       <div class="st_row">
