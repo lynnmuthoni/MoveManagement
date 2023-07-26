@@ -254,7 +254,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       //   }
       // //
-
+ function Projectshome(){
+  fetch("http://192.168.1.20:8000/project/",{
+                method: 'GET',
+                mode:"cors"
+            })
+        
+                .then((data) => {
+                    return data.json();
+                    
+                })
+                .then((objectdata)=>{
+                    console.log(objectdata[0].projectname);
+                    let userdata=""
+                    objectdata.map((project)=>{
+                        userdata +=` <li> ${project.projectname}</li>`;
+                    });
+                    document.getElementById("userData")
+                    innerHTML=userdata;
+                })
+               
+window.onload= Projectshome;
+ }
        
 
       

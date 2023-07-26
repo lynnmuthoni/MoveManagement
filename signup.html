@@ -126,41 +126,72 @@
            }
 else
           {
- // Prepare the data to send to the API
+
          const userData = {
-             username: name,
+             username: username,
              email: email,
              password: password
             
          };
-         const history=useHistory();
-         
-        // Make the API call using the Fetch API
-        fetch('http://192.168.0.102:8000/api/register/', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(userData)
-      })
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response.json();
-      })
-      .then(data => {
+         const history=useHistory()
+
+            var requestOptions = {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(userData),
+         redirect: 'follow'
+};
+
+fetch("http://192.168.1.13:8000/login/", requestOptions)
+  .then(response => {
+    if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+  . then(data => {
           // Handle the success response from the API
           console.log('Signup successful:', data);
           // Redirect the user to the login page
           window.location.href = 'login.html'; 
           history.push("/add")
       })
-      .catch(error => {
-          // Handle errors from the API
-          console.error('Signup failed:', error);
+  .catch(error => console.log('error', error));
+//  // Prepare the data to send to the API
+//          const userData = {
+//              username: name,
+//              email: email,
+//              password: password
+            
+//          };
+//          const history=useHistory();
          
-      });
+//         // Make the API call using the Fetch API
+//         fetch('http://192.168.0.102:8000/api/register/', {
+//           method: 'POST',
+//           headers: {
+//               'Content-Type': 'application/json'
+//           },
+//           body: JSON.stringify(userData)
+//       })
+//       .then(response => {
+//           if (!response.ok) {
+//               throw new Error('Network response was not ok');
+//           }
+//           return response.json();
+//       })
+//       .then(data => {
+//           // Handle the success response from the API
+//           console.log('Signup successful:', data);
+//           // Redirect the user to the login page
+//           window.location.href = 'login.html'; 
+//           history.push("/add")
+//       })
+    //   .catch(error => {
+    //       // Handle errors from the API
+    //       console.error('Signup failed:', error);
+         
+    //   });
     }};
 
 //);

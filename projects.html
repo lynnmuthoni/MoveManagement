@@ -91,6 +91,7 @@
 <br>
 <div class="tab">
   <button class="tablinks" onclick="openCity(event, 'Users')">Users</button>
+   <!-- openCity(event, 'Users')">Users</button> -->
   <button class="tablinks" onclick="openCity(event, 'Documents')">Documents</button>
   
 </div>
@@ -100,28 +101,6 @@
     
    <!-- tables start -->
 
-   
-   <script>
-    // Function to fetch data from the JSONPlaceholder API and display it as bars on the page
-    function fetchUserData() {
-        fetch("http://192.168.0.102:8000/project/")
-            .then(response => response.json())
-            .then(data => showInfo(data) )
-            {
-                // Assuming data is an array of user objects
-                const userDataContainer = document.getElementById('userData');
-
-                // Loop through the data and create a bar for each user
-                data.forEach(user => {
-                    console.table(username, password);
-                });
-
-    }
-  }
-
-    // Call the fetchUserData function when the page loads
-    window.onload = fetchUserData;
-</script>
    <table id="0">
     <header class="st_table_header">
       <div class="st_row">
@@ -130,54 +109,111 @@
         
       </div>
     </header>
-    <div class="st_table">
-      <div class="st_row">
-        <div class="st_column _rank">Linet</div>
-        <div class="st_column _name">lin1223</div>
-      </div>
-      </div>
   </table>
         </div>
   <!-- table end -->
-</div>
+<script> 
+   var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+        };
+
+        fetch("http://192.168.1.20:8000/projectuser/", requestOptions)
+            .then(response =>{
+                if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("NETWORK RESPONSE ERROR");
+    }
+            })
+              .then((data) => {
+                    console.log(data);
+                    return data;
+                
+                    
+                })
+                .then((objectdata)=>{
+                    console.log(objectdata[0].Projectname);
+                    let userdata=""
+                    objectdata.map((project)=>{
+                        userdata +=  
+                        `<div class="st_table">
+      <div class="st_row">
+        <div class="st_column _rank">${project.username}</div>
+        <div class="st_column _name">${project.password}</div>
+      </div>
+      </div>`
+                    ;
+                                        
+                    });
+                    document.getElementById("0").
+                    innerHTML=userdata;
+                })
+
+</script>
 
 <div id="Documents" class="tabcontent">
   <h3>Documents</h3>
+  <form action="" method="get">
+
+  </form>
     
-  <!-- DOCUMENT CARD -->
-  <div class="dcontainer">
-    <div class="dcard">
-      <div class="dcontent">
-        <div class="dimgBx">
-           <img src="assets/images/ic_doc.png">
-        </div>
-        <div class="dcontentBx">
-          <h3>Doc Name<br><span>description</span></h3>
-        
-        </div>
-      </div>
-    </div>
   
-  
-  <!-- DOC END -->
-   <!-- DOCUMENT CARD -->
-  
-    <div class="dcard">
-      <div class="dcontent">
-        <div class="dimgBx">
-           <img src="assets/images/ic_doc.png">
-        </div>
-        <div class="dcontentBx">
-          <h3>Doc Name<br><span>description</span></h3>
-        
-        </div>
-      </div>
-    </div>
   </div>
   
   <!-- DOC END -->
 </div>
+<script>
+ var requestOptions = {
+        method: 'GET',
+        
+        redirect: 'follow'
+        };
 
+        fetch("http://192.168.1.20:8000/documentations/", requestOptions)
+            .then(response =>{
+                if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("NETWORK RESPONSE ERROR");
+    }
+            })
+            
+      
+        
+                .then((data) => {
+                    console.log(data);
+                    return data;
+                
+                    
+                })
+                .then((objectdata)=>{
+                    console.log(objectdata[0].projectname);
+                    let userdata=""
+                    objectdata.map((doc)=>{
+                        userdata +=  `<div class="dcard">
+                        <div class="dcontent">
+                          <div class="dimgBx">
+                            <img style="height:50px; width:50px" src="assets/images/ic_doc.png">
+                          </div>
+                          <div class="dcontentBx">
+                            <h3>${doc.projectname}<br><span>${doc.description}</span></h3>
+                            <form action=""  method="get">
+                            <input type="file" name="${doc.documentation}"></input>
+                           </form>
+                            
+                          
+                          </div>
+                        </div>
+                      </div>`
+                        ;
+                                        
+                    });
+                    document.getElementById("Documents").
+                    innerHTML=userdata;
+                })
+
+</script>
 
 
         
