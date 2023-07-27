@@ -30,11 +30,10 @@
             <div class="nav_list"> 
                 <a href="homepage.html" class="nav_link active"> <i class="bi bi-house-fill"></i> <span class="nav_name">Home</span> </a>
                 <a href="projectv.html" class="nav_link"> <i class="bi bi-file-earmark-bar-graph-fill"></i> <span class="nav_name">Projects</span> </a>
-               <ul> 
-                <li><a href="settings.html" class="nav_link"> <i class="bi bi-gear-fill"></i> <span class="nav_name">Settings</span> </a> </li>
-                <li><a href="#">UI Face</a></li>
-               <li><a href="#">Pigments</a></li>
-              </ul>
+               
+               <a href="settings.html" class="nav_link"> <i class="bi bi-gear-fill"></i> <span class="nav_name">Settings</span> </a> 
+                
+              
               
                  </div>
         </div> 
@@ -45,7 +44,7 @@
  
     <!-- Cards start -->
     <section>
-      <div class="container mx-auto col-10 ">
+      <div id="card-project" class="container mx-auto col-10 ">
         <div class="card">
           <div class="content">
             <div class="imgBx">
@@ -115,7 +114,7 @@
         redirect: 'follow'
         };
 
-        fetch("http://192.168.1.20:8000/project/", requestOptions)
+        fetch("http://192.168.1.13:8000/project/", requestOptions)
             .then(response =>{
                 if (response.ok) {
       return response.json();
@@ -132,13 +131,16 @@
                 
                     
                 })
+                
                 .then((objectdata)=>{
                     console.log(objectdata[0].Projectname);
+                    
                     let userdata=""
                     objectdata.map((projects)=>{
                         userdata +=  `
+                
                           <div class=" bar w3-hover-black w3-bar w3-greyheight-100 bg-light onClick="Callid()" ">
-          <div class="w3-bar-item "> <a href="#" class="w3-bar-item "> ${projects.Projectname}</a></div>
+          <div class="w3-bar-item "> <a href="#" class="w3-bar-item ">${projects.id} ${projects.Projectname}</a></div>
           
         </div><br>`;
                                         
@@ -147,7 +149,7 @@
                     innerHTML=userdata;
                 })
                 function Callid(){
-
+                
                 }
           
       </script>

@@ -1,70 +1,168 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>test</title>
-   
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <script src="assets/bootstrap-4.0.0-dist/js/customize.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="assets/bootstrap-4.0.0-dist/css/custom.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+ 
 </head>
-<body>
-    <div>
-                            
-        <label for="username">Username</label>
-        <input type="text"  value={name}
-        onChange="(e)=>setName(e.target.value)" placeholder="Enter Username" id="username" name="username"  />
-
-        
-         <label for="useremail">Useremail</label>
-         <input type="email" placeholder="Enter email" value={email}
-         onChange="(e)=>setEmail(e.target.value)"/>
-
-        <br/>
-
-        
-        <label for="pswrd"> Password</label>
-        <input type="password"  placeholder="Enter Password"
-        value={password}
-        onChange="(e)=>setPassword(e.target.value)"  />
-
-      
-        
-        <div class="subcontainer">
-            <p class="forgotpsd"> <a href="#">Forgot Password?</a></p>
-        </div>
-
-
-       
-        <button  onclick = "Register()" type="submit">SignUp</button><br/>
-
+<body class="body" id="body-pd">
+  <header class="header" id="header">
      
-        <p class="register">Already a member?  <a class="" href="login.html">Login here!</a></p>
+      <div class="header_toggle"> <i class='bi bi-list' id="header-toggle"></i> </div>    
+      <div class="header_img"> <img src="assets/images/ic_users.png" alt="User name"> </div>
+  </header>
+
+
+  <div class="l-navbar" id="nav-bar">
+    <nav class="nav">
+        <div> <a href="#" class="nav_logo"> <i class="bi bi-dropbox"></i> <span class="nav_logo-name logo">Movemanagement</span> </a>
+            <div class="nav_list"> 
+                <a href="homepage.html" class="nav_link active"> <i class="bi bi-house-fill"></i> <span class="nav_name">Home</span> </a>
+                <a href="projectv.html" class="nav_link"> <i class="bi bi-file-earmark-bar-graph-fill"></i> <span class="nav_name">Projects</span> </a>
+               
+               <a href="settings.html" class="nav_link"> <i class="bi bi-gear-fill"></i> <span class="nav_name">Settings</span> </a> 
+                
+              
+              
+                 </div>
+        </div> 
+        <a href="profile.html" class="nav_link"> <i class="bi bi-person-circle"></i> <span class="nav_name">Profile</span> </a>
+        <a href="#" class="nav_link"> <i class="bi bi-box-arrow-right"></i> <span class="nav_name">SignOut</span> </a>
+    </nav>
+</div>
+ 
+    <!-- Cards start -->
+    <section>
+      <div  class="container mx-auto col-10 ">
+        <div class="card" id="card-project">
+          <div class="content">
+            <div class="imgBx">
+              <i class="bi bi-pie-chart-fill"></i>
+            </div>
+            <div class="contentBx">
+              <h3>Projects<br><span>total</span></h3>
+            </div>
+          </div>
+          <ul class="sci">
+            <li>
+              <a href="">10</a>
+            </li>
+          </ul>
         </div>
 
-    <script>
-        function Register(){
+          <!-- doc card start -->
+          <div class="container">
+            <div class="card">
+              <div class="content">
+                <div class="imgBx">
+                  <i class="bi bi-book-half" ></i>
+                </div>
+                <div class="contentBx">
+                  <h3>Documents<br><span>total</span></h3>
+                </div>
+              </div>
+              <ul class="sci">
+                <li>
+                  <a href="">10</a>
+                </li>
+              </ul>
+            </div>
+          <!-- document card end -->
+          <!-- user card start -->
+          <div class="container">
+            <div class="card">
+              <div class="content">
+                <div class="imgBx">
+                  <i class="bi bi-people-fill"></i>
+                </div>
+                <div class="contentBx">
+                  <h3>Users<br><span>total</span></h3>
+                </div>
+              </div>
+              <ul class="sci">
+                <li>
+                  <a href="">10</a>
+                </li>
+              </ul>
+            </div>
+         
+          <!-- user card end -->
+        </div>
+        
+        
+    </section>
+  <!--Container Main start-->
+ 
+      <section id="projectData">
+        
+        </section>
+        <script>
+           var requestOptions = {
+        method: 'GET',
+        
+        redirect: 'follow'
+        };
 
-const[name,setName]=useState("")
-const[email,setEmail]=useState("")
-const[password,setPassword]=useState("")
-const history=useHistory();
-
-async function Signup(){
-    let item={name,password,email}
-    console.warn(item)
-
-    fetch('http://192.168.0.102:8000/api/register/', {
-      method: 'POST',
-      body: JSON.stringify(item),
-      headers: {
-          'Content-Type': 'application/json',
-          "Accept":  'application/json'
-      }
+        fetch("http://192.168.1.13:8000/project/", requestOptions)
+            .then(response =>{
+                if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("NETWORK RESPONSE ERROR");
+    }
+            })
+            
       
-  })
-  result=await result.json()
-  localStorage.setItem("user-info",JSON.stringify(result))
-  history.push("/add")
-}
-}
-export default Register
-    </script>
+        
+                .then((data) => {
+                    console.log(data);
+                    return data;
+                
+                    
+                })
+                
+                .then((objectdata)=>{
+                    console.log(objectdata[0].Projectname);
+                    let objectsLen = 0;
+                     let userdata=""
+                    
+                    objectdata.map((projects)=>{
+                        userdata =  `
+                
+                        <div class="content">
+            <div class="imgBx">
+              <i class="bi bi-pie-chart-fill"></i>
+            </div>
+            <div class="contentBx">
+              <h3>Projects<br><span>total</span></h3>
+            </div>
+          </div>`;
+                                        
+                 });
+                  
+       objects.innerHTML += "Original Array: " + JSON.stringify(objectdata)+"<br>";
+       objects.innerHTML += "<br>Total number of objects: " +  objectsLen ;
+                    document.getElementById("card-project").
+                    innerHTML=userdata;
+                })
+                function Callid(){
+                
+                }
+          
+      </script>
+  
+  <!--Container Main end-->
+
 </body>
 </html>

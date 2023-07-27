@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, ">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
     
@@ -33,13 +33,13 @@
                         <div class="mainContainer">
                             <!-- Username -->
                             <label for="username"> Username</label>
-                            <input id="name"type="text"  placeholder="Enter Username" name="username"    >
+                            <input id="name"type="text"  placeholder="Enter Username" name="name"    >
                 
                             <br>
                 
                             <!-- Password -->
                             <label for="pswrd"> Password</label>
-                            <input id= "password"type="password"   placeholder="Enter Password"  name="pswrd" required>
+                            <input id= "password"type="password"   placeholder="Enter Password"  name="password" required>
                 
                             <!-- sub container for the checkbox and forgot password link -->
                             <div class="subcontainer">
@@ -56,69 +56,113 @@
                         </div>
                 
                     </form>
+                    <div id="loginResult"></div>
             
         </div>
 
 
     </div>
     <script>
-        function Login(){
-      
-      // Get the value of the input field with id="username"
-      const name = document.getElementById("name").value.trim();
-      
-      // Get the value of the input field with id="password"
-      const password = document.getElementById("password").value;
-      // Get the value of the input field with id="confirmpassword"
-      
-      // Check if the username is empty
-      if (name == "") {
-        alert("Username field must be filled out");
-        return false;
-      }
-      
-          // Check if the password is empty
-      if (password == "") {
-        alert("Password field must be filled out");
-        return false;
-      }
-      else{
-    
         
-        // Prepare the data to send to the login API
-        const loginData = {
-            name:username,
-            password: password
-        };
-
-        // Make the API call to login (assuming it returns a JSON response)
-        fetch('http://192.168.1.13:8000/login/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(loginData)
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Login failed. Invalid credentials.');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Handle the success response from the API
-            console.log('Login successful:', data);
-
-            // Redirect the user to the dashboard or homepage
-            window.location.href = 'homepage.html'; 
-        })
-        .catch(error => {
-            // Handle errors from the API or invalid credentials
-            console.error('Login failed:', error);
+        function Login(){
            
-        });
-    }
+            // Get the value of the input field with id="username"
+            const name = document.getElementById("name").value.trim();
+            
+            // Get the value of the input field with id="password"
+            const password = document.getElementById("password").value;
+            // Get the value of the input field with id="confirmpassword"
+          
+            // Check if the username is empty
+            if (name == "") {
+                alert("Username field must be filled out");
+                return false;
+            }
+            
+                // Check if the password is empty
+            if (password == "") {
+                alert("Password field must be filled out");
+                return false;
+            }
+            var form = new FormData();
+            form.append("username", name);
+            form.append("password", password);
+
+            var settings = {
+            url: "http://192.168.1.13:8000/login/",
+            method: "POST",
+            timeout: 0,
+            dataType:"json",
+            processData: false,
+            mimeType: "multipart/form-data",
+            contentType: false,
+            data: form
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                });
+          
+    return false;
 }
+        
+           
+            // var form = new FormData();
+            // form.append("username", name);
+            // form.append("password", password);
+
+            // var settings = {
+            // "url": "http://192.168.1.13:8000/login/",
+            // "method": "POST",
+            // "timeout": 0,
+            // "processData": false,
+            // "mimeType": "multipart/form-data",
+            // "contentType": false,
+            // "data": form
+            // };
+
+            // $.ajax(settings).done(function (response) {
+            //     console.log("Well done")
+            // console.log(response);
+            // });
+
+
+
+
+        // // Prepare the data to send to the login API
+        // const loginData = {
+        //     name:username,
+        //     password: password
+        // };
+
+        // // Make the API call to login (assuming it returns a JSON response)
+        // fetch('http://192.168.1.13:8000/login/', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(loginData)
+        // })
+        // .then(response => {
+        //     if (!response.ok) {
+        //         throw new Error('Login failed. Invalid credentials.');
+        //     }
+        //     return response.json();
+        // })
+        // .then(data => {
+        //     // Handle the success response from the API
+        //     console.log('Login successful:', data);
+
+        //     // Redirect the user to the dashboard or homepage
+        //     window.location.href = 'homepage.html'; 
+        // })
+        // .catch(error => {
+        //     // Handle errors from the API or invalid credentials
+        //     console.error('Login failed:', error);
+           
+        // });
+    
+
 ;
         
     </script>

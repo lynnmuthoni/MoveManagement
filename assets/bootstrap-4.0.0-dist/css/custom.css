@@ -230,7 +230,7 @@ input{
 /* homepage side navigation */
 
 .body{
-  background-image: linear-gradient(to right, rgb(211, 211, 219), rgb(255, 255, 255) );
+  background-image: linear-gradient(to right, rgb(211, 211, 219), rgb(250, 211, 219) );
   overflow-y: scroll;
   
 }
