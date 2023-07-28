@@ -118,7 +118,7 @@
         redirect: 'follow'
         };
 
-        fetch("http://192.168.1.20:8000/projectuser/", requestOptions)
+        fetch("http://192.168.1.13:8000/projectuser/", requestOptions)
             .then(response =>{
                 if (response.ok) {
       return response.json();
@@ -170,7 +170,7 @@
         redirect: 'follow'
         };
 
-        fetch("http://192.168.1.20:8000/documentations/", requestOptions)
+        fetch("http://192.168.1.13:8000/documentations/", requestOptions)
             .then(response =>{
                 if (response.ok) {
       return response.json();
@@ -191,21 +191,20 @@
                     console.log(objectdata[0].projectname);
                     let userdata=""
                     objectdata.map((doc)=>{
-                        userdata +=  `<div class="dcard">
+                        userdata +=  ` <a href="${doc.documentation}">
+                          <div class="dcard">
+                         
                         <div class="dcontent">
                           <div class="dimgBx">
                             <img style="height:50px; width:50px" src="assets/images/ic_doc.png">
                           </div>
                           <div class="dcontentBx">
-                            <h3>${doc.projectname}<br><span>${doc.description}</span></h3>
-                            <form action=""  method="get">
-                            <input type="file" name="${doc.documentation}"></input>
-                           </form>
-                            
+                            <h3>${doc.projectname}<br><span>${doc.description}</span></h3>                 
                           
                           </div>
                         </div>
-                      </div>`
+                      </div>
+                      </a>`
                         ;
                                         
                     });

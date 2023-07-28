@@ -16,51 +16,41 @@
     <table id = "tbtest"></table>
 </div>
 
-    <script>
-      
 
-        var requestOptions = {
+<script>
+    var requestOptions = {
         method: 'GET',
-        
         redirect: 'follow'
-        };
+    };
 
-        fetch("http://192.168.1.20:8000/projectuser/", requestOptions)
-            .then(response =>{
-                if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error("NETWORK RESPONSE ERROR");
-    }
-            })
-            
-      
-        
-                .then((data) => {
-                    console.log(data);
-                    return data;
-                
-                    
-                })
-                .then((objectdata)=>{
-                    console.log(objectdata[0].Projectname);
-                    let userdata=""
-                    objectdata.map((project)=>{
-                        userdata +=  `<tr>
-                        <td>${project.username} </td>
-                        <td>${project.password}</td>
-                            
-                    </tr>`;
-                                        
-                    });
-                    document.getElementById("tbtest").
-                    innerHTML=userdata;
-                })
-               
+    fetch("http://192.168.1.13:8000/projectuser/", requestOptions)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("NETWORK RESPONSE ERROR");
+            }
+        })
+        .then(data => {
+            console.log(data);
+
+            // Clear existing table rows
+            document.getElementById("tbtest").innerHTML = "";
+
+            // Loop through the data and create table rows for each object
+            for (let i = 0; i < data.length; i++) {
+                const project = data[i];
+                const row = `<tr>
+                                <td>${project.username}</td>
+                                <td>${project.password}</td>
+                            </tr>`;
+                document.getElementById("tbtest").innerHTML += row;
+            }
+        })
+        .catch(error => console.error(error));
+</script>
+
        
 
-      
-       
-    </script>
 </body>
 </html>

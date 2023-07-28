@@ -511,8 +511,8 @@ pre{
 
 /* document cards */
 /* start */
-.dcontainer {
-  
+.a .dcontainer {
+  overflow: hidden;
   width: fit-content;
   height: auto;
   margin: auto 2;
@@ -523,8 +523,8 @@ pre{
   z-index: 1;
 }
 
-.dcontainer .dcard {
-  border-width: 2px;
+.a .dcontainer .dcard {
+  border-width: 4px;
   border-color: #000000;
 	position: relative;
 	width: 180px;
@@ -539,7 +539,7 @@ pre{
 	
 }
 
-.dcontainer .dcard .dcontent {
+.a .dcontainer .dcard .dcontent {
 	position: relative;
 	display: flex;
 	justify-content: center;
@@ -550,14 +550,14 @@ pre{
 
 
 
-.dcontainer .dcard .dcontent .dimgBx {
+.a .dcontainer .dcard .dcontent .dimgBx {
 	position: relative;
 	width: 50px;
 	height: 50px;
 	overflow: hidden;
 }
 
-.dcontainer .dcard .dcontent .dimgBx img {
+.a .dcontainer .dcard .dcontent .dimgBx img {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -566,7 +566,7 @@ pre{
 	object-fit: cover;
 }
 
-.dcontainer .dcard .dcontent .dcontentBx h3 {
+.a .dcontainer .dcard .dcontent .dcontentBx h3 {
 	color: #070707;
 	text-transform: uppercase;
 	letter-spacing: 2px;
@@ -577,7 +577,7 @@ pre{
 	line-height: 1em;
 }
 
-.dcontainer .dcard .dcontent .dcontentBx h3 span {
+.a .dcontainer .dcard .dcontent .dcontentBx h3 span {
 	font-size: 15px;
 	font-weight: 300;
 	text-transform: initial;

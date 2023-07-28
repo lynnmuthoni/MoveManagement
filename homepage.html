@@ -45,22 +45,7 @@
     <!-- Cards start -->
     <section>
       <div id="card-project" class="container mx-auto col-10 ">
-        <div class="card">
-          <div class="content">
-            <div class="imgBx">
-              <i class="bi bi-pie-chart-fill"></i>
-            </div>
-            <div class="contentBx">
-              <h3>Projects<br><span>total</span></h3>
-            </div>
-          </div>
-          <ul class="sci">
-            <li>
-              <a href="">10</a>
-            </li>
-          </ul>
-        </div>
-
+       
           <!-- doc card start -->
           <div class="container">
             <div class="card">
@@ -99,6 +84,90 @@
          
           <!-- user card end -->
         </div>
+        <script>
+           var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+
+    fetch("http://192.168.1.13:8000/projectuser/", requestOptions)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("NETWORK RESPONSE ERROR");
+            }
+        })
+        .then(data => {
+            console.log(data);
+
+            // Clear existing table rows
+            document.getElementById("tbtest").innerHTML = "";
+
+            // Loop through the data and create table rows for each object
+            for (let i = 0; i < data.length; i++) {
+                const project = data[i];
+                const card = `<tr>
+                                <td>${project.username}</td>
+                                <td>${project.password}</td>
+                            </tr>`;
+                document.getElementById("tbtest").innerHTML += card;
+            }
+        })
+        .catch(error => console.error(error));
+          var requestOptions = {
+       method: 'GET',
+       
+       redirect: 'follow'
+       };
+
+       fetch("http://192.168.1.13:8000/project/", requestOptions)
+           .then(response =>{
+               if (response.ok) {
+     return response.json();
+   } else {
+     throw new Error("NETWORK RESPONSE ERROR");
+   }
+           })
+            .then((data) => {
+                   console.log(data);
+                   return data;
+               
+                   
+               })
+               
+               .then((objectdata)=>{
+                   console.log(objectdata[0].Projectname);
+                   
+                   let userdata=""
+                 
+                   objectdata.map((projects)=>{
+                  
+                       userdata =  `
+                    <div class="card">
+                    <div class="content">
+                      <div class="imgBx">
+                        <i class="bi bi-pie-chart-fill"></i>
+                      </div>
+                      <div class="contentBx">
+                        <h3>Projects<br><span>total</span></h3>
+                      </div>
+                    </div>
+                    <ul class="sci">
+                      <li>
+                        <a href="">${projects.id}</a>
+                      </li>
+                    </ul>
+                  </div>
+                        `;
+                                       
+                   });
+                   document.getElementById("card-project").
+                   innerHTML=userdata;
+               })
+               
+         
+     </script>
         
         
     </section>
@@ -140,7 +209,7 @@
                         userdata +=  `
                 
                           <div class=" bar w3-hover-black w3-bar w3-greyheight-100 bg-light onClick="Callid()" ">
-          <div class="w3-bar-item "> <a href="#" class="w3-bar-item ">${projects.id} ${projects.Projectname}</a></div>
+          <div class="w3-bar-item "> <a href="projects.html/${projects.id}" class="w3-bar-item ">${projects.id} ${projects.Projectname}</a></div>
           
         </div><br>`;
                                         
@@ -155,6 +224,9 @@
       </script>
   
   <!--Container Main end-->
+  <div class = "display project">
+
+  </div>
 
 </body>
 </html>

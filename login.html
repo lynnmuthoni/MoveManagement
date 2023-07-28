@@ -8,10 +8,7 @@
     <title>Login</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="assets/bootstrap-4.0.0-dist/css/custom.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
  
@@ -22,7 +19,7 @@
           <img style="height :22em; width: 22em;" src="assets/images/planning.png" alt="">
         </div>
         <div class="col-6 divsright">            
-                    <form action="">
+                    <form >
                         <!-- Headings for the form -->
                         <div class="headingsContainer">
                             <h4 class="text_sign">Sign in</h4>
@@ -62,10 +59,36 @@
 
 
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    
+   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script> 
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
+        console.log("Linet is ..")
+            var form = new FormData();
+            form.append("username", name);
+            form.append("password", password);
+
+            var settings = {
+            url: "http://192.168.1.13:8000/projectuser/",
+            method: "GET",
+            timeout: 0,
+            // dataType:"json",
+            contentType: "application/json",
+            // data: {"username":"Ronnie","password":"mwesh2kn"}
+            
+            };
+            
+            
+            $.ajax(settings).done(function (response) {
+                console.log("Successful")
+                console.log(response);
+               
+                });
         
         function Login(){
-           
+          
             // Get the value of the input field with id="username"
             const name = document.getElementById("name").value.trim();
             
@@ -84,26 +107,9 @@
                 alert("Password field must be filled out");
                 return false;
             }
-            var form = new FormData();
-            form.append("username", name);
-            form.append("password", password);
-
-            var settings = {
-            url: "http://192.168.1.13:8000/login/",
-            method: "POST",
-            timeout: 0,
-            dataType:"json",
-            processData: false,
-            mimeType: "multipart/form-data",
-            contentType: false,
-            data: form
-            };
-
-            $.ajax(settings).done(function (response) {
-                console.log(response);
-                });
+            
           
-    return false;
+   
 }
         
            
@@ -166,5 +172,7 @@
 ;
         
     </script>
+   
+    
 </body>
 </html>
