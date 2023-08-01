@@ -47,6 +47,9 @@
       color: #000000; 
   }
 /* signup and login page */
+.forgSignbody{
+  background-image: linear-gradient(to right, rgb(105, 105, 105) , #007bbb);;
+}
 .divSignUp{
   background: transparent;
   border-radius: 15px;
