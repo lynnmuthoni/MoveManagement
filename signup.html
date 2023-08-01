@@ -122,91 +122,16 @@ console.log("details"),
                 success: function(response){
                 //if request if made successfully then the response represent the data
                 console.log("Successfully registered");
+                window.location.href = 'login.html'; 
                 console.log(response);
                 // $( "#result" ).empty().append( response );
         }
         });
 
 });  
-//        function SignUp(){
-  
-//       // Get the value of the input field with id="username"
-//       const username = document.getElementById("username").value.trim();
-//       // Get the value of the input field with id="email"
-//       const email = document.getElementById("email").value.trim();
-//       // Get the value of the input field with id="password"
-//       const password = document.getElementById("password").value;
-//       // Get the value of the input field with id="confirmpassword"
-//       const passwordConfirm = document.getElementById("confirmpassword").value;
-//       // Regular expression to check if the email is in the correct format
-//       var emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-//       // Regular expression to check if the password is strong enough
-//       var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-//       // Check if the username is empty
-//       if (username == "") {
-//         alert("Username field must be filled out");
-//         return false;
-//       }
-//       // Check if the email is empty
-//      else if (email == "") {
-//         alert("Email field must be filled out");
-//         return false;
-//       }
-//       // Check if the email is in the correct format
-//       else if (!email.match(emailRegex)) {
-//         alert("Please enter a valid email address");
-//         return false;
-//       }
-//           // Check if the password is empty
-//       else if (password == "") {
-//         alert(" field must be filled out");
-//         return false;
-//       }
-//       // Check if the password is strong enough
-//     //  else if (!password.match(passwordRegex)) {
-//     //     alert("Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, and one number");
-//     //     return false;
-//     //   }
-//            // Check if the password confirmation is empty
-//          else  if (passwordConfirm == "") {
-//             alert("Password confirmation field must be filled out");
-//             return false;
-//           }
-//           // Check if the passwords match
-//          else if (password != passwordConfirm) {
-//             alert("Passwords do not match");
-//             return false;
-//            }
-// else
-//           {
-//             var form = new FormData(this);
-//              // Prepare the data to send to the registration API
-//          // Make the API call using jQuery's $.ajax method
-//          $.ajax({
-//             url: 'http://192.168.1.13:8000/register/',
-//             method: 'POST',
-//             timeout: 0,
-//             processData: false,
-//             contentType: false,
-//             data: form,
-//             success: function(response) {
-//                 // Handle the success response from the API
-//                 console.log('Registration successful:', response);
-//                 // Redirect the user to the dashboard or homepage
-//                 window.location.href = 'dashboard.html'; // Replace 'dashboard.html' with the URL of your dashboard/homepage
-//             },
-//             error: function(jqXHR, textStatus, errorThrown) {
-//                 // Handle errors from the API or registration failure
-//                 console.error('Registration failed:', errorThrown);
-//                 // Display an error message to the user here.
-//             }
-//         });
-//     };
 
 
-
-//     </script>
+   </script>
    
 </body>
 </html>

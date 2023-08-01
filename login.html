@@ -90,29 +90,41 @@
                 return false;
             }
 
- var form = {
-     "username":name,
-     "password":password,
- };
+                var form = {
+                    "username":name,
+                    "password":password,
+                };
 
-//  console.log("username" + name);
-//  console.log("password" + password);
+                //  console.log("username" + name);
+                //  console.log("password" + password);
 
- $.ajax(console.log("details"),{
-     type: "POST",
-     url:"http://192.168.1.8:8000/login/",
-     dataType:"json",
-     data:JSON.stringify(form),
-     contentType: "application/json",
-     success: function(response){
-         //if request if made successfully then the response represent the data
-         console.log("Successful response");
-         console.log(response);
-         // $( "#result" ).empty().append( response );
-     }
- });
+                $.ajax(console.log("details"),{
+                    type: "POST",
+                    url:"http://192.168.1.8:8000/login/",
+                    dataType:"json",
+                    data:JSON.stringify(form),
+                    contentType: "application/json",
+                    success: function(response){
+                        sessionStorage.setItem('token', response.token);
 
-});  
+                       // logResponse("loginResponse", `sessionStorage set with token value: ${response.token}`)
+                        console.log(response.token)
+                        window.location.href = 'homepage.html'; 
+                        console.log(response);
+                    },
+
+                        error: function(xhr, status, error) {
+                                alert("Login failed. Please check your credentials.");
+                            }
+                        //if request if made successfully then the response represent the data
+                        // console.log("Successful response");
+                    
+                        // $( "#result" ).empty().append( response );
+                    })
+                    
+                });
+
+                //});  
             
     </script>
    
