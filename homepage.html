@@ -22,6 +22,7 @@
 </head>
 
 <body class="body" id="body-pd">
+  <div id="date"></div>
 
   <script>
     // Retrieve the token from session storage
@@ -31,8 +32,8 @@
     // Example: Use the token in an API request header for authentication
    
     $.ajax({
-        type: "GET",
-        url: "http://192.168.1.8:8000/projects/",
+        type: "POST",  
+        url: "http://192.168.1.9:8000/login/",
         headers: {
           //"Authorization": localStorage.getItem('token')
             Authorization: `Bearer ${token}`,
@@ -93,53 +94,26 @@
  
     <!-- Cards start -->
     <section>
-      <div id="card-project" class="container mx-auto col-10 ">
+      <div  class="container mx-auto col-10 ">
+        <div id="card-project" ></div>
        
           <!-- doc card start -->
-          <div class="container">
-            <div class="card">
-              <div class="content">
-                <div class="imgBx">
-                  <i class="bi bi-book-half" ></i>
-                </div>
-                <div class="contentBx">
-                  <h3>Documents<br><span>total</span></h3>
-                </div>
-              </div>
-              <ul class="sci">
-                <li>
-                  <a href="">10</a>
-                </li>
-              </ul>
-            </div>
+          <div id="card-documents" class="container"> </div>
+           
           <!-- document card end -->
           <!-- user card start -->
-          <div class="container">
-            <div class="card">
-              <div class="content">
-                <div class="imgBx">
-                  <i class="bi bi-people-fill"></i>
-                </div>
-                <div class="contentBx">
-                  <h3>Users<br><span>total</span></h3>
-                </div>
-              </div>
-              <ul class="sci">
-                <li>
-                  <a href="">10</a>
-                </li>
-              </ul>
-            </div>
-         
+          <div id= "card-users"class="container">  </div>
+                   
           <!-- user card end -->
-        </div>
+         
+      </div>
         <script>
            var requestOptions = {
         method: 'GET',
         redirect: 'follow'
     };
 
-    fetch("http://192.168.1.8:8000/projectuser/", requestOptions)
+    fetch("http://192.168.1.9:8000/users/", requestOptions)
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -150,49 +124,49 @@
         .then(data => {
             console.log(data);
 
-            // Clear existing table rows
-            document.getElementById("tbtest").innerHTML = "";
-
-            // Loop through the data and create table rows for each object
-            for (let i = 0; i < data.length; i++) {
-                const project = data[i];
-                const card = `<tr>
-                                <td>${project.username}</td>
-                                <td>${project.password}</td>
-                            </tr>`;
-                document.getElementById("tbtest").innerHTML += card;
+            let i=0;
+            
+            while (i< data.length){
+              i++
             }
+            
+             const card = `<div class="card">
+              <div class="content">
+                <div class="imgBx">
+                  <i class="bi bi-people-fill"></i>
+                </div>
+                <div class="contentBx">
+                  <h3>Users<br><span>total</span></h3>
+                </div>
+              </div>
+              <ul class="sci">
+                <li>
+                  <a href="">${i}</a>
+                </li>
+              </ul>
+            </div>`;
+            document.getElementById("card-users").innerHTML = card;
         })
         .catch(error => console.error(error));
-          var requestOptions = {
-       method: 'GET',
-       
-       redirect: 'follow'
-       };
+        fetch("http://192.168.1.9:8000/documentations/", requestOptions)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("NETWORK RESPONSE ERROR");
+            }
+        })
+        .then(dataproj => {
+            console.log(dataproj);
 
-       fetch("http://192.168.1.8:8000/project/", requestOptions)
-           .then(response =>{
-               if (response.ok) {
-     return response.json();
-   } else {
-     throw new Error("NETWORK RESPONSE ERROR");
-   }
-           })
-            .then((data) => {
-                   console.log(data);
-                   return data;
-               
-                   
-               })
-               
-               .then((objectdata)=>{
-                   console.log(objectdata[0].Projectname);
-                   
-                   let userdata=""
-                 
-                   objectdata.map((projects)=>{
-                  
-                       userdata =  `
+            let p=0;
+            
+            while (p< dataproj.length){
+              p++
+            }
+           
+            
+            const cardproject =  `
                     <div class="card">
                     <div class="content">
                       <div class="imgBx">
@@ -204,16 +178,51 @@
                     </div>
                     <ul class="sci">
                       <li>
-                        <a href="">${projects.id}</a>
+                        <a href="">${p}</a>
                       </li>
                     </ul>
-                  </div>
-                        `;
+                  </div>`;
                                        
-                   });
-                   document.getElementById("card-project").
-                   innerHTML=userdata;
-               })
+                     document.getElementById("card-project").innerHTML = cardproject;
+        })
+        .catch(error => console.error(error));
+               
+
+               fetch("http://192.168.1.9:8000/documentations/", requestOptions)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("NETWORK RESPONSE ERROR");
+            }
+        })
+        .then(datadoc => {
+            console.log(datadoc);
+
+            let d=0;
+            
+            while (d< datadoc.length){
+              d++
+            }
+                      
+            const carddoc = ` <div class="card">
+              <div class="content">
+                <div class="imgBx">
+                  <i class="bi bi-book-half" ></i>
+                </div>
+                <div class="contentBx">
+                  <h3>Documents<br><span>total</span></h3>
+                </div>
+              </div>
+              <ul class="sci">
+                <li>
+                  <a href="">${d}</a>
+                </li>
+              </ul>
+            </div>`;
+            document.getElementById("card-documents").innerHTML = carddoc;
+        })
+        .catch(error => console.error(error));
                
          
      </script>
@@ -232,7 +241,7 @@
         redirect: 'follow'
         };
 
-        fetch("http://192.168.1.8:8000/project/", requestOptions)
+        fetch("http://192.168.1.9:8000/project/", requestOptions)
             .then(response =>{
                 if (response.ok) {
       return response.json();
@@ -256,19 +265,38 @@
                     let userdata=""
                     objectdata.map((projects)=>{
                         userdata +=  `
-                
-                          <div class=" bar w3-hover-black w3-bar w3-greyheight-100 bg-light onClick="Callid()" ">
-          <div class="w3-bar-item "> <a href="projects.html/${projects.id}" class="w3-bar-item ">${projects.id} ${projects.Projectname}</a></div>
-          
-        </div><br>`;
+                        <a href="projects.html?id=${projects.id}" onClick="" >
+                          <div class=" bar w3-hover-black w3-bar w3-greyheight-100 bg-light  ">
+                          <div class="w3-bar-item "> <h3 class="w3-bar-item ">${projects.id}. ${projects.Projectname}</h4></div>
+                          </div><br>
+                      </a>`;
                                         
                     });
                     document.getElementById("projectData").
                     innerHTML=userdata;
                 })
                 function Callid(){
-                
-                }
+                  // let idp = ${projects.id};
+
+                  // Add an event listener to the item list
+        document.getElementById(id).addEventListener('click', function(event) {
+            // Check if the clicked element is an <li> element
+            if (event.target.tagName === 'LI') {
+                // Get the item ID from the 'data-item-id' attribute
+                const projectId = event.target.getAttribute('data-item-id');
+
+                // Navigate to the new page with more data
+                window.location.href = `projects.html?id=${projectId}`;
+        }
+                  
+                  let tab=`
+                  <h3>${projects.date}</h3>
+                  <h3>${projects.url}</h3>
+                  `
+                  console.log(tab)
+                  document.getElementById("date").innerHTML = tab;
+                })
+              }
           
       </script>
   
