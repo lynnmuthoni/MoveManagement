@@ -43,11 +43,90 @@
     <!--Container Main start-->
     <h2 style="font-size: x-large;" class="he">${project.name}</h2>
      <!-- Cards start -->
+     <script>
+      var requestOptions = {
+   method: 'GET',
+   redirect: 'follow',
+   Authorization: `Bearer ${token}`,
+};
+
+
+fetch("http://192.168.1.7:8000/projectuser/", requestOptions)
+   .then(response => {
+       if (response.ok) {
+           return response.json();
+       } else {
+           throw new Error("NETWORK RESPONSE ERROR");
+       }
+   })
+   .then(data => {
+       console.log(data);
+
+       let i=0;
+       
+       while (i< data.length){
+         i++
+       }
+       
+        const card = `<div class="card">
+         <div class="content">
+           <div class="imgBx">
+             <i class="bi bi-people-fill"></i>
+           </div>
+           <div class="contentBx">
+             <h3>Users<br><span>total</span></h3>
+           </div>
+         </div>
+         <ul class="sci">
+           <li>
+             <a href="">${i}</a>
+           </li>
+         </ul>
+       </div>`;
+       document.getElementById("card-users").innerHTML = card;
+   })
+   .catch(error => console.error(error));
+   </script>
+  
      <section>
   
             <!-- doc card start -->
-            <div class="container">
-              <div class="card">
+            <div class="container" id="procard-users"></div>
+            <!-- document card end -->
+            <!-- user card start -->
+            <div class="container" id="procard-docs">   
+          </div>
+           <!-- user card end -->
+          
+      </section>
+       <!-- Cards end here -->
+       <script>
+           var requestOptions = {
+   method: 'GET',
+   redirect: 'follow',
+   Authorization: `Bearer ${token}`,
+};
+
+
+fetch("http://192.168.1.7:8000/documentation/", requestOptions)
+   .then(response => {
+       if (response.ok) {
+           return response.json();
+       } else {
+           throw new Error("NETWORK RESPONSE ERROR");
+       }
+   })
+   .then(data => {
+       console.log(data);
+       while(${project.id}==i)
+
+       let i=0;
+       
+       while (i< data.length){
+         i++
+       }
+       
+        const card = ` <div class="card">
                 <div class="content">
                   <div class="imgBx">
                     <i class="bi bi-book-half" ></i>
@@ -58,14 +137,33 @@
                 </div>
                 <ul class="sci">
                   <li>
-                    <a href="">10</a>
+                    <a href="">${i}</a>
                   </li>
                 </ul>
-              </div>
-            <!-- document card end -->
-            <!-- user card start -->
-            <div class="container">
-              <div class="card">
+              </div>`;
+       document.getElementById("procard-docs").innerHTML = card;
+   })
+   .catch(error => console.error(error));
+
+   //Users
+   fetch("http://192.168.1.7:8000/users/", requestOptions)
+   .then(response => {
+       if (response.ok) {
+           return response.json();
+       } else {
+           throw new Error("NETWORK RESPONSE ERROR");
+       }
+   })
+   .then(data => {
+       console.log(data);
+
+       let u=0;
+       
+       while (u< data.length){
+         u++
+       }
+       
+        const card = ` <div class="card">
                 <div class="content">
                   <div class="imgBx">
                     <i class="bi bi-people-fill"></i>
@@ -76,15 +174,15 @@
                 </div>
                 <ul class="sci">
                   <li>
-                    <a href="">10</a>
+                    <a href="">${u}</a>
                   </li>
                 </ul>
-              </div>
-          </div>
-           <!-- user card end -->
-          
-      </section>
-       <!-- Cards end here -->
+              </div>`;
+       document.getElementById("procard-users").innerHTML = card;
+   })
+   .catch(error => console.error(error));
+
+       </script>
 <!-- tabs start -->
     
 <br>

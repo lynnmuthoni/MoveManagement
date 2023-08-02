@@ -24,46 +24,46 @@
 <body class="body" id="body-pd">
   <div id="date"></div>
 
-  <script>
+   <script> 
     // Retrieve the token from session storage
-    const token = sessionStorage.getItem('token');
-    console.log(token)
+    // const token = sessionStorage.getItem('token');
+    // console.log(token)
   
     // Example: Use the token in an API request header for authentication
    
-    $.ajax({
-        type: "POST",  
-        url: "http://192.168.1.9:8000/login/",
-        headers: {
-          //"Authorization": localStorage.getItem('token')
-            Authorization: `Bearer ${token}`,
-           // Authorization: $`Bearer ${localStorage.getItem("token")}`
-        },
-        error: function(err) {
-          switch (err.status) {
-            case "400":
-              // bad request
-              break;
-            case "401":
-              // unauthorized
-              break;
-            case "403":
-              // forbidden
-              break;
-            default:
-              //Something bad happened
-              break;
-          }
-        },
-        success: function(response) {
-          console.log("Successful entering")
-            // Process the response from the server
-        },
-        // error: function(xhr, status, error) {
-        //     // Handle errors
-        // }
-    });
-  </script>
+  //   $.ajax({
+  //       type: "POST",  
+  //       url: "http://192.168.1.7:8000/login/",
+  //       headers: {
+  //         //"Authorization": localStorage.getItem('token')
+  //           Authorization: `Bearer ${token}`,
+  //          // Authorization: $`Bearer ${localStorage.getItem("token")}`
+  //       },
+  //       error: function(err) {
+  //         switch (err.status) {
+  //           case "400":
+  //             // bad request
+  //             break;
+  //           case "401":
+  //             // unauthorized
+  //             break;
+  //           case "403":
+  //             // forbidden
+  //             break;
+  //           default:
+  //             //Something bad happened
+  //             break;
+  //         }
+  //       },
+  //       success: function(response) {
+  //         console.log("Successful entering")
+  //           // Process the response from the server
+  //       },
+  //       // error: function(xhr, status, error) {
+  //       //     // Handle errors
+  //       // }
+  //   });
+   </script> 
   
 
 
@@ -105,50 +105,74 @@
           <div id= "card-users"class="container">  </div>
                    
           <!-- user card end -->
+        </section>
+        <!--Container Main start-->
+       
+            <section id="projectData">
+              
+              </section>
          
       </div>
-        <script>
-           var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-    };
+      <script>
+          // var requestOptions = {
+          //     method: 'GET',
+          //     redirect: 'follow',
+          //     headers:{
+          //     Authorization: `Bearer` + sessionStorage.getItem('token')}
+          // };
+    
 
-    fetch("http://192.168.1.9:8000/users/", requestOptions)
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error("NETWORK RESPONSE ERROR");
-            }
-        })
-        .then(data => {
-            console.log(data);
+      fetch("http://192.168.1.7:8000/projectuser/",{
+              method: 'GET',
+              redirect: 'follow',
+              headers:{
+              Authorization: `Bearer` + sessionStorage.getItem('token')}
+          }
+    
+      )
+          .then(response => {
+              if (response.ok) {
+                  return response.json();
+              } else {
+                  throw new Error("NETWORK RESPONSE ERROR");
+              }
+          })
+          .then(data => {
+              console.log(data);
 
-            let i=0;
-            
-            while (i< data.length){
-              i++
-            }
-            
-             const card = `<div class="card">
-              <div class="content">
-                <div class="imgBx">
-                  <i class="bi bi-people-fill"></i>
+              let i=0;
+              
+              while (i< data.length){
+                i++
+              }
+              
+              const card = `<div class="card">
+                <div class="content">
+                  <div class="imgBx">
+                    <i class="bi bi-people-fill"></i>
+                  </div>
+                  <div class="contentBx">
+                    <h3>Users<br><span>total</span></h3>
+                  </div>
                 </div>
-                <div class="contentBx">
-                  <h3>Users<br><span>total</span></h3>
-                </div>
-              </div>
-              <ul class="sci">
-                <li>
-                  <a href="">${i}</a>
-                </li>
-              </ul>
-            </div>`;
-            document.getElementById("card-users").innerHTML = card;
-        })
-        .catch(error => console.error(error));
-        fetch("http://192.168.1.9:8000/documentations/", requestOptions)
+                <ul class="sci">
+                  <li>
+                    <a href="">${i}</a>
+                  </li>
+                </ul>
+              </div>`;
+              document.getElementById("card-users").innerHTML = card;
+          })
+          .catch(error => console.error(error));
+        
+        fetch("http://192.168.1.7:8000/project/",
+        {
+              method: 'GET',
+              redirect: 'follow',
+              headers:{
+              Authorization: `Bearer` + sessionStorage.getItem('token')}
+          }
+          )
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -186,10 +210,16 @@
                      document.getElementById("card-project").innerHTML = cardproject;
         })
         .catch(error => console.error(error));
-               
-
-               fetch("http://192.168.1.9:8000/documentations/", requestOptions)
-        .then(response => {
+      
+        fetch("http://192.168.1.7:8000/documentations/",
+        {
+              method: 'GET',
+              redirect: 'follow',
+              headers:{
+              Authorization: `Bearer` + sessionStorage.getItem('token')}
+          } 
+        )
+             .then(response => {
             if (response.ok) {
                 return response.json();
             } else {
@@ -228,20 +258,17 @@
      </script>
         
         
-    </section>
-  <!--Container Main start-->
- 
-      <section id="projectData">
-        
-        </section>
+    
         <script>
-           var requestOptions = {
-        method: 'GET',
         
-        redirect: 'follow'
-        };
-
-        fetch("http://192.168.1.9:8000/project/", requestOptions)
+        fetch("http://192.168.1.7:8000/project/", 
+         {
+              method: 'GET',
+              redirect: 'follow',
+              headers:{
+              Authorization: `Bearer` + sessionStorage.getItem('token',console.log("Were almost done"))}
+          }
+        )
             .then(response =>{
                 if (response.ok) {
       return response.json();
@@ -265,7 +292,7 @@
                     let userdata=""
                     objectdata.map((projects)=>{
                         userdata +=  `
-                        <a href="projects.html?id=${projects.id}" onClick="" >
+                        <a href="projects.html?id=${projects.id}"  onClick="" >
                           <div class=" bar w3-hover-black w3-bar w3-greyheight-100 bg-light  ">
                           <div class="w3-bar-item "> <h3 class="w3-bar-item ">${projects.id}. ${projects.Projectname}</h4></div>
                           </div><br>
