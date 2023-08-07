@@ -14,6 +14,7 @@ from rest_framework import status
 class RegisterUserAPIView(generics.CreateAPIView):
         permission_classes = (AllowAny,)
         serializer_class = RegisterSerializer
+        
 
 #login view
 class LoginAPI(generics.GenericAPIView):
@@ -23,15 +24,28 @@ class LoginAPI(generics.GenericAPIView):
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
             user = serializer.validated_data
+            print("successfully loged in")
             return Response({
                 "user": UserSerializer(user, context=self.get_serializer_context()).data,
                 "token": AuthToken.objects.create(user)[1]
             })
 
+class ResetPassword(APIView):
+        def post(self,request):
+                serializer=ResetPasswordSerializer(data=request.data)
+                alldatas={}
+                if serializer.is_valid(raise_exception=True):
+                        serializer.save()
+                        alldatas['data']="successfully registered"
+                        print(alldatas)
+                        return Response(alldatas)
+                else:
+                    return Response("failed retry after some time")
+
 
 #project names views
 class ProjectView(viewsets.ModelViewSet):
-        # method='GET'
+        method='GET'
         # authentication_classes= [TokenAuthentication]
         # permission_classes=(IsAuthenticated,) 
         queryset=Project.objects.all()
@@ -39,7 +53,7 @@ class ProjectView(viewsets.ModelViewSet):
 
 #project users view
 class ProjectUserView(viewsets.ModelViewSet):
-        # method='GET'
+        method='GET'
         # authentication_classes= [TokenAuthentication]
         # permission_classes=(IsAuthenticated,)   
         queryset=ProjectUser.objects.all()
@@ -47,7 +61,7 @@ class ProjectUserView(viewsets.ModelViewSet):
 
 #documentation view
 class DocumentationView(viewsets.ModelViewSet):
-#     method='GET'
+    method='GET'
     # authentication_classes= [TokenAuthentication]
     # permission_classes=(IsAuthenticated)
     queryset=Documentation.objects.all()
@@ -55,14 +69,13 @@ class DocumentationView(viewsets.ModelViewSet):
 
 #users documentation view
 class UserView(viewsets.ModelViewSet):
-        # method='GET'
+        method='GET'
         # authentication_classes= [TokenAuthentication]
         # permission_classes=(IsAuthenticated)
         queryset=User.objects.all()
-        serializer_class=UserSerializer
-
+      
 class Count(APIView):
-       def get(self,request):
+       def get(self):
               projectcount=Project.objects.count()
               ProjectUsercount=ProjectUser.objects.count()
               Documentationcount=Documentation.objects.count()

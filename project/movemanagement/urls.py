@@ -16,6 +16,7 @@ urlpatterns = [
   path('logout/',knox_views.LogoutView.as_view()),
   path('count/', Count.as_view(), name='count'),
   path('register/',RegisterUserAPIView.as_view(),name='register'),
+  path('resetpassword/',views.ResetPassword.as_view(),name='resetpassword'),
   
   
 ]

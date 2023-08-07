@@ -7,41 +7,6 @@ from django.contrib.auth.password_validation import validate_password
 from .models import *
 from django.contrib.auth import authenticate
 
-## login
-class LoginUserSerializer(serializers.Serializer):
-    username = serializers.CharField()
-    password = serializers.CharField()
-
-    def validate(self, data):
-        user = authenticate(**data)
-        if user and user.is_active:
-             return user
-        elif user and user.is_anonymous:
-            raise serializers.ValidationError("Enter correct username")
-        elif user is None:
-            raise serializers.ValidationError("user not found")
-        elif user.password is None:
-            raise serializers.ValidationError("Enter correct password")
-
-## reset password serializer
-
-##user serializercd 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ["id","username","password"]
-from rest_framework import serializers
-from django.contrib.auth.models import User
-
-class ChangePasswordSerializer(serializers.Serializer):
-    model = User
-
-    """
-    Serializer for password change endpoint.
-    """
-    old_password = serializers.CharField(required=True)
-    new_password = serializers.CharField(required=True)
-
 ## registration serializer
 class RegisterSerializer(serializers.ModelSerializer):
             username=serializers.CharField(
@@ -76,6 +41,50 @@ class RegisterSerializer(serializers.ModelSerializer):
                 user.set_password(validated_data['password'])
                 user.save()
                 return user
+
+## login
+class LoginUserSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+    def validate(self, data):
+        user = authenticate(**data)
+        if user and user.is_active:
+             return user
+        elif user and user.is_anonymous:
+            raise serializers.ValidationError("Enter correct username")
+        elif user is None:
+            raise serializers.ValidationError("user not found")
+        elif user.password is None:
+            raise serializers.ValidationError("Enter correct password")
+
+## reset password serializer
+class ResetPasswordSerializer(serializers.Serializer):
+    username=serializers.CharField(max_length=100,required=True)
+    password=serializers.CharField(max_length=100,required=True)
+    class Meta:
+        model=User
+        fields=('username','password')
+    def save(self):
+        username=self.validated_data['username']
+        password=self.validated_data['password']
+        #filtering out whethere username is existing or not, if your username is existing then if condition will allow your username
+        if User.objects.filter(username=username).exists():
+            #if your username is existing get the query of your specific username 
+            user=User.objects.get(username=username)
+            #then set the new password for your username
+            user.set_password(password)
+            user.save()
+            return user
+        else:
+            raise serializers.ValidationError({'error':'please enter valid crendentials'})
+
+##user serializercd 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["id","username","password"]
+
     
 ## details serializers
 class ProjectUserSerializer(serializers.ModelSerializer):
