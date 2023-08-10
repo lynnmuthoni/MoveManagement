@@ -33,12 +33,12 @@ class LoginAPI(generics.GenericAPIView):
 class ResetPassword(APIView):
         def post(self,request):
                 serializer=ResetPasswordSerializer(data=request.data)
-                # alldatas={}
+                alldatas={}
                 if serializer.is_valid(raise_exception=True):
                         serializer.save()
                         alldatas['data']="successfully registered"
-                        # print(alldatas)
-                        # return Response(alldatas)
+                        print(alldatas)
+                        return Response(alldatas)
                 else:
                     return Response("failed retry after some time")
 
