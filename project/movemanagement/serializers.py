@@ -31,7 +31,8 @@ class RegisterSerializer(serializers.ModelSerializer):
             class Meta:
                 model = User
                 fields = ('username','password',
-                    'email',)
+                  'email', )
+                
                 ## function to creation user creation fields
             def create(self, validated_data):
                 user = User.objects.create(
@@ -60,11 +61,11 @@ class LoginUserSerializer(serializers.Serializer):
 
 ## reset password serializer
 class ResetPasswordSerializer(serializers.Serializer):
-    username=serializers.CharField(max_length=100,required=True)
-    password=serializers.CharField(max_length=100,required=True)
+    username=serializers.CharField()
+    password=serializers.CharField()
     class Meta:
         model=User
-        fields=('username','password')
+        fields=('username','password',)
     def save(self):
         username=self.validated_data['username']
         password=self.validated_data['password']
