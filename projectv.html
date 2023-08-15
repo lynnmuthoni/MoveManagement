@@ -45,18 +45,53 @@
         
   <!--Container Main start-->
  
-      <section>
-          <div class=" bar w3-bar-block w3-greyheight-100 bg-light  w3-hover-black">
-            <div class="w3-bar-item "> 
-                <a href="#" > 1. PROJECT NAME</a>
-                <img style="height: 50px; width:60px;" class="w3-button w3-right" src="assets/images/ic_bin.png" alt="delete">  
-          </div>
-        </section>
+      <section id="projectData"> </section>
   
   <!--Container Main end-->
+  <script>
+  fetch("http://192.168.1.14:8000/project/", 
+         {
+              method: 'GET',
+              redirect: 'follow',
+              headers:{
+              Authorization: `Bearer` + sessionStorage.getItem('token')}
+          }
+        )
+        .then(response =>{
+                if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error("NETWORK RESPONSE ERROR");
+            }
+              })
+        .then((data) => {
+            console.log(data);
+            return data;           
+              })
+                
+        .then((objectdata)=>{
+            console.log(objectdata[0].Projectname);
+                    
+            let userdata=""
+            objectdata.map((projects)=>{
+                     
+              userdata +=  `
+
+                <div class=" bar w3-bar-block w3-greyheight-100 bg-light  w3-hover-black">
+                    <div class="w3-bar-item "> 
+                        <a href="#" > ${projects.id}. ${projects.Projectname}</a>
+                        <img style="height: 50px; width:60px;" class="w3-button w3-right" src="assets/images/ic_bin.png" alt="delete">  
+                </div>
+                <br>`;
+                   //   userdata.addEventListener("click", () => Callid(projects.id));                                        
+                                        });
+                    document.getElementById("projectData").
+                    innerHTML=userdata;                    
+                })        
 
 
 
   <!-- Cards end here -->
+  </script>
 </body>
 </html>

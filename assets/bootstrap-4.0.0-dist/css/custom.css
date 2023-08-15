@@ -351,6 +351,7 @@ border-radius:15px ;
 }
 
 .container .card .sci li {
+  justify-content:center;
   text-align:center;
 	list-style: none;
 	margin: 0 ;
@@ -360,13 +361,14 @@ border-radius:15px ;
 }
 
 .container .card:hover .sci li {
+  justify-content:center;
   text-align:center;
 	transform: translateY(0px);
 	opacity: 1;
 }
 
 .container .card .sci li a {
-	color: #ffdc5c;
+	color: #000000;
 	font-size: 40px;
   bottom: 4px;
 }
@@ -516,7 +518,7 @@ pre{
 /* start */
 .a .dcontainer {
   overflow: hidden;
-  width: fit-content;
+  width: 60px;
   height: auto;
   margin: auto 2;
   display: flex;
@@ -526,11 +528,11 @@ pre{
   z-index: 1;
 }
 
-.a .dcontainer .dcard {
+.dcard {
   border-width: 4px;
   border-color: #000000;
 	position: relative;
-	width: 180px;
+	width: fit-content;
 	height: 160px;
 	background: rgb(255, 255, 255);
 	box-shadow: 0 15px 35px rgba(88, 87, 87, 0.5);
@@ -553,14 +555,14 @@ pre{
 
 
 
-.a .dcontainer .dcard .dcontent .dimgBx {
+.dimgBx {
 	position: relative;
 	width: 50px;
 	height: 50px;
 	overflow: hidden;
 }
 
-.a .dcontainer .dcard .dcontent .dimgBx img {
+.dimgBx img {
 	position: absolute;
 	top: 0;
 	left: 0;

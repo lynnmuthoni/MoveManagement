@@ -24,148 +24,60 @@
 <body class="body" id="body-pd">
   <div id="date"></div>
 
-   <script> 
-    // Retrieve the token from session storage
-    // const token = sessionStorage.getItem('token');
-    // console.log(token)
-  
-    // Example: Use the token in an API request header for authentication
-   
-  //   $.ajax({
-  //       type: "POST",  
-  //       url: "http://192.168.1.7:8000/login/",
-  //       headers: {
-  //         //"Authorization": localStorage.getItem('token')
-  //           Authorization: `Bearer ${token}`,
-  //          // Authorization: $`Bearer ${localStorage.getItem("token")}`
-  //       },
-  //       error: function(err) {
-  //         switch (err.status) {
-  //           case "400":
-  //             // bad request
-  //             break;
-  //           case "401":
-  //             // unauthorized
-  //             break;
-  //           case "403":
-  //             // forbidden
-  //             break;
-  //           default:
-  //             //Something bad happened
-  //             break;
-  //         }
-  //       },
-  //       success: function(response) {
-  //         console.log("Successful entering")
-  //           // Process the response from the server
-  //       },
-  //       // error: function(xhr, status, error) {
-  //       //     // Handle errors
-  //       // }
-  //   });
-   </script> 
-  
-
-
-  <header class="header" id="header">
+    <header class="header" id="header">
      
       <div class="header_toggle"> <i class='bi bi-list' id="header-toggle"></i> </div>    
       <div class="header_img"> <img src="assets/images/ic_users.png" alt="User name"> </div>
-  </header>
+     </header>
 
 
-  <div class="l-navbar" id="nav-bar">
-    <nav class="nav">
-        <div> <a href="#" class="nav_logo"> <i class="bi bi-dropbox"></i> <span class="nav_logo-name logo">Movemanagement</span> </a>
-            <div class="nav_list"> 
-                <a href="homepage.html" class="nav_link active"> <i class="bi bi-house-fill"></i> <span class="nav_name">Home</span> </a>
-                <a href="projectv.html" class="nav_link"> <i class="bi bi-file-earmark-bar-graph-fill"></i> <span class="nav_name">Projects</span> </a>
-               
-               <a href="settings.html" class="nav_link"> <i class="bi bi-gear-fill"></i> <span class="nav_name">Settings</span> </a> 
+    <div class="l-navbar" id="nav-bar">
+      <nav class="nav">
+          <div> <a href="#" class="nav_logo"> <i class="bi bi-dropbox"></i> <span class="nav_logo-name logo">Movemanagement</span> </a>
+              <div class="nav_list"> 
+                  <a href="homepage.html" class="nav_link active"> <i class="bi bi-house-fill"></i> <span class="nav_name">Home</span> </a>
+                  <a href="projectv.html" class="nav_link"> <i class="bi bi-file-earmark-bar-graph-fill"></i> <span class="nav_name">Projects</span> </a>
                 
-              
-              
-                 </div>
-        </div> 
-        <a href="profile.html" class="nav_link"> <i class="bi bi-person-circle"></i> <span class="nav_name">Profile</span> </a>
-        <a href="#" class="nav_link"> <i class="bi bi-box-arrow-right"></i> <span class="nav_name">SignOut</span> </a>
-    </nav>
-</div>
- 
+                <a href="settings.html" class="nav_link"> <i class="bi bi-gear-fill"></i> <span class="nav_name">Settings</span> </a> 
+                  
+                
+                
+                  </div>
+          </div> 
+          <a href="profile.html" class="nav_link"> <i class="bi bi-person-circle"></i> <span class="nav_name">Profile</span> </a>
+          <a href="#" class="nav_link"> <i class="bi bi-box-arrow-right"></i> <span class="nav_name">SignOut</span> </a>
+      </nav>
+     </div>
+  
     <!-- Cards start -->
     <section>
-      <div  class="container mx-auto col-10 ">
-        <div id="card-project" ></div>
+      <div  class=" container mx-auto col-10 ">
+        <!-- project card start -->
+        <div class="" id="card-project" ></div>
        
           <!-- doc card start -->
-          <div id="card-documents" class="container"> </div>
+          <div id="card-documents" class=""> </div>
            
           <!-- document card end -->
           <!-- user card start -->
-          <div id= "card-users"class="container">  </div>
-                   
+          <div id= "card-users"class=""></div>                 
           <!-- user card end -->
-        </section>
+      </div>
+    </section>
         <!--Container Main start-->
        
-            <section id="projectData">
+    <section id="projectData"></section>
+    
               
-              </section>
          
-      </div>
-      <script>
-          // var requestOptions = {
-          //     method: 'GET',
-          //     redirect: 'follow',
-          //     headers:{
-          //     Authorization: `Bearer` + sessionStorage.getItem('token')}
-          // };
     
-
-      fetch("http://192.168.1.7:8000/projectuser/",{
-              method: 'GET',
-              redirect: 'follow',
-              headers:{
-              Authorization: `Bearer` + sessionStorage.getItem('token')}
-          }
-    
-      )
-          .then(response => {
-              if (response.ok) {
-                  return response.json();
-              } else {
-                  throw new Error("NETWORK RESPONSE ERROR");
-              }
-          })
-          .then(data => {
-              console.log(data);
-
-              let i=0;
-              
-              while (i< data.length){
-                i++
-              }
-              
-              const card = `<div class="card">
-                <div class="content">
-                  <div class="imgBx">
-                    <i class="bi bi-people-fill"></i>
-                  </div>
-                  <div class="contentBx">
-                    <h3>Users<br><span>total</span></h3>
-                  </div>
-                </div>
-                <ul class="sci">
-                  <li>
-                    <a href="">${i}</a>
-                  </li>
-                </ul>
-              </div>`;
-              document.getElementById("card-users").innerHTML = card;
-          })
-          .catch(error => console.error(error));
+    <script>
+      // Retrieve the token from session storage
+      const token = sessionStorage.getItem('token');
+      console.log(token)
+                   
         
-        fetch("http://192.168.1.7:8000/project/",
+        fetch("http://192.168.1.14:8000/count/",
         {
               method: 'GET',
               redirect: 'follow',
@@ -182,13 +94,11 @@
         })
         .then(dataproj => {
             console.log(dataproj);
-
-            let p=0;
+            console.log(dataproj.project_count);
+            console.log(dataproj.Documentationcount);
+            console.log(dataproj.ProjectUsercount) ;
             
-            while (p< dataproj.length){
-              p++
-            }
-           
+           // project card start
             
             const cardproject =  `
                     <div class="card">
@@ -197,140 +107,153 @@
                         <i class="bi bi-pie-chart-fill"></i>
                       </div>
                       <div class="contentBx">
-                        <h3>Projects<br><span>total</span></h3>
-                      </div>
+                      <h3>Documents<br><span>total</span></h3>
                     </div>
-                    <ul class="sci">
-                      <li>
-                        <a href="">${p}</a>
-                      </li>
-                    </ul>
-                  </div>`;
+                  </div>
+                  <ul class="sci">
+                    <li>
+                      <a  href="">${dataproj.project_count}</a>
+                    </li>
+                  </ul>
+                </div>`;
                                        
-                     document.getElementById("card-project").innerHTML = cardproject;
+                 document.getElementById("card-project").innerHTML = cardproject;
+
+                //project card end
+
+                //  documentcard start
+                              
+                const carddoc = ` 
+                <div class="card">
+                  <div class="content">
+                    <div class="imgBx">
+                      <i class="bi bi-book-half" ></i>
+                    </div>
+                    <div class="contentBx">
+                      <h3>Documents<br><span>total</span></h3>
+                    </div>
+                  </div>
+                  <ul class="sci">
+                    <li>
+                      <a href="">${dataproj.Documentationcount}</a>
+                    </li>
+                  </ul>
+                </div>`;
+                document.getElementById("card-documents").innerHTML = carddoc;
+
+               // documentcard end
+
+            //user card start
+
+              const card = `<div class="card">
+                <div class="content">
+                  <div class="imgBx">
+                    <i class="bi bi-people-fill"></i>
+                  </div>
+                  <div class="contentBx">
+                    <h3>Users<br><span>total</span></h3>
+                  </div>
+                </div>
+                <ul class="sci">
+                  <li>
+                    <a href="">${dataproj.ProjectUsercount}</a>
+                  </li>
+                </ul>
+              </div>`;
+              document.getElementById("card-users").innerHTML = card;
+             //user card end
         })
         .catch(error => console.error(error));
       
-        fetch("http://192.168.1.7:8000/documentations/",
-        {
-              method: 'GET',
-              redirect: 'follow',
-              headers:{
-              Authorization: `Bearer` + sessionStorage.getItem('token')}
-          } 
-        )
-             .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error("NETWORK RESPONSE ERROR");
-            }
-        })
-        .then(datadoc => {
-            console.log(datadoc);
+        // fetch("http://192.168.1.14:8000/documentations/",
+        // {
+        //       method: 'GET',
+        //       redirect: 'follow',
+        //       headers:{
+        //       Authorization: `Bearer` + sessionStorage.getItem('token')}
+        //   } 
+        // )
+        //      .then(response => {
+        //     if (response.ok) {
+        //         return response.json();
+        //     } else {
+        //         throw new Error("NETWORK RESPONSE ERROR");
+        //     }
+        // })
+        // .then(datadoc => {
+        //     console.log(datadoc);
 
-            let d=0;
+        //     let d=0;
             
-            while (d< datadoc.length){
-              d++
-            }
+        //     while (d< datadoc.length){
+        //       d++
+        //     }
                       
-            const carddoc = ` <div class="card">
-              <div class="content">
-                <div class="imgBx">
-                  <i class="bi bi-book-half" ></i>
-                </div>
-                <div class="contentBx">
-                  <h3>Documents<br><span>total</span></h3>
-                </div>
-              </div>
-              <ul class="sci">
-                <li>
-                  <a href="">${d}</a>
-                </li>
-              </ul>
-            </div>`;
-            document.getElementById("card-documents").innerHTML = carddoc;
-        })
-        .catch(error => console.error(error));
+        //     const carddoc = ` <div class="card">
+        //       <div class="content">
+        //         <div class="imgBx">
+        //           <i class="bi bi-book-half" ></i>
+        //         </div>
+        //         <div class="contentBx">
+        //           <h3>Documents<br><span>total</span></h3>
+        //         </div>
+        //       </div>
+        //       <ul class="sci">
+        //         <li>
+        //           <a href="">${d}</a>
+        //         </li>
+        //       </ul>
+        //     </div>`;
+        //     document.getElementById("card-documents").innerHTML = carddoc;
+        // })
+        // .catch(error => console.error(error));
                
-         
-     </script>
-        
-        
     
-        <script>
+      console.log(token)
         
-        fetch("http://192.168.1.7:8000/project/", 
+        fetch("http://192.168.1.14:8000/project/", 
          {
               method: 'GET',
               redirect: 'follow',
               headers:{
-              Authorization: `Bearer` + sessionStorage.getItem('token',console.log("Were almost done"))}
+              Authorization: `Bearer` + sessionStorage.getItem('token')}
           }
         )
-            .then(response =>{
+        .then(response =>{
                 if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error("NETWORK RESPONSE ERROR");
-    }
-            })
+              return response.json();
+            } else {
+              throw new Error("NETWORK RESPONSE ERROR");
+            }
+              })
             
       
         
-                .then((data) => {
-                    console.log(data);
-                    return data;
+        .then((data) => {
+            console.log(data);
+            return data;           
+              })
                 
+        .then((objectdata)=>{
+            console.log(objectdata[0].Projectname);
                     
-                })
-                
-                .then((objectdata)=>{
-                    console.log(objectdata[0].Projectname);
-                    
-                    let userdata=""
-                    objectdata.map((projects)=>{
-                        userdata +=  `
-                        <a href="projects.html?id=${projects.id}"  onClick="" >
-                          <div class=" bar w3-hover-black w3-bar w3-greyheight-100 bg-light  ">
-                          <div class="w3-bar-item "> <h3 class="w3-bar-item ">${projects.id}. ${projects.Projectname}</h4></div>
-                          </div><br>
-                      </a>`;
-                                        
-                    });
+            let userdata=""
+            objectdata.map((projects)=>{
+                     
+              userdata +=  `
+                  <a href="projects.html?id=${projects.id}" id="${projects.id}" onClick="openCity(event, 'Users')" >
+                    <div class=" bar w3-hover-black w3-bar w3-greyheight-100 bg-light  ">
+                    <div class="w3-bar-item "> <h3 class="w3-bar-item ">${projects.Projectname}</h4></div>
+                    </div><br>
+                  </a>`;
+                   //   userdata.addEventListener("click", () => Callid(projects.id));                                        
+                                        });
                     document.getElementById("projectData").
-                    innerHTML=userdata;
-                })
-                function Callid(){
-                  // let idp = ${projects.id};
-
-                  // Add an event listener to the item list
-        document.getElementById(id).addEventListener('click', function(event) {
-            // Check if the clicked element is an <li> element
-            if (event.target.tagName === 'LI') {
-                // Get the item ID from the 'data-item-id' attribute
-                const projectId = event.target.getAttribute('data-item-id');
-
-                // Navigate to the new page with more data
-                window.location.href = `projects.html?id=${projectId}`;
-        }
-                  
-                  let tab=`
-                  <h3>${projects.date}</h3>
-                  <h3>${projects.url}</h3>
-                  `
-                  console.log(tab)
-                  document.getElementById("date").innerHTML = tab;
-                })
-              }
-          
+                    innerHTML=userdata;                    
+                })        
       </script>
   
   <!--Container Main end-->
-  <div class = "display project">
-
-  </div>
-
+  <div class = "display project">  </div>
 </body>
 </html>

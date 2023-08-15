@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test3</title>
+    <script src="assets/bootstrap-4.0.0-dist/js/customize.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="assets/bootstrap-4.0.0-dist/css/custom.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+ 
+</head>
+<body class="body" id="body-pd">
+    <header class="header" id="header">
+       
+        <div class="header_toggle"> <i class='bi bi-list' id="header-toggle"></i> </div>  
+        <div class="logo "><h4 style="color: rgb(235, 220, 15); font-family: 'Times New Roman', Times, serif; font-size: x-large;">Projects</h4></div>  
+        <div class="header_img"> <img src="assets/images/ic_users.png" alt="User name"> </div>
+    </header>
+
+
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div> <a href="#" class="nav_logo"> <i class="bi bi-dropbox"></i> <span class="nav_logo-name logo">Movemanagement</span> </a>
+                <div class="nav_list"> 
+                    <a href="homepage.html" class="nav_link active"> <i class="bi bi-house-fill"></i> <span class="nav_name">Home</span> </a>
+                    <a href="projectv.html" class="nav_link"> <i class="bi bi-file-earmark-bar-graph-fill"></i> <span class="nav_name">Projects</span> </a>
+                    <a href="settings.html" class="nav_link"> <i class="bi bi-gear-fill"></i> <span class="nav_name">Settings</span> </a> 
+                  
+                     </div>
+            </div> 
+            <a href="profile.html" class="nav_link"> <i class="bi bi-person-circle"></i> <span class="nav_name">Profile</span> </a>
+            <a href="#" class="nav_link"> <i class="bi bi-box-arrow-right"></i> <span class="nav_name">SignOut</span> </a>
+        </nav>
+    </div>
+     
+    <!--Container Main start-->
+    <div id="mydetails">
+    
+  </div>
+     <!-- Cards start -->
+     
+     <section class="container">
+        
+      <!-- doc card start -->
+      <div  id="procard-users"></div>
+      <!-- document card end -->
+      <!-- user card start -->
+      <div id="procard-docs"> </div>
+    <!-- user card end -->
+    
+</section>
+<!-- Cards end here -->
+
+<!-- tabs start -->
+    
+<br>
+<br>
+<div class="tab">
+  <button class="tablinks" onclick="City(event, 'Users')">Users</button>
+   <!-- openCity(event, 'Users')">Users</button> -->
+  <button class="tablinks" onclick="City(event, 'Documents')">Documents</button>
+  
+</div>
+
+<div id="Users" class="tabcontent">
+  <h3>Users</h3>
+    
+   <!-- tables start -->
+
+   <table id="0">
+    <header class="st_table_header">
+      <div class="st_row">
+        <div class="st_column _rank">Username</div>
+        <div class="st_column _name">Password</div>
+        
+      </div>
+    </header>
+  </table>
+        </div>
+  <!-- table end -->
+  <div id="Documents" class="tabcontent">
+    <h3>Documents</h3>
+    <div id="doc_container" class="dcontainer">
+
+    </div>
+    </div>
+    
+    <!-- DOC END -->
+     <script>
+       // Retrieve the token from session storage
+       const token = sessionStorage.getItem('token');
+      console.log(token)
+      function extractIdFromURL(url) {
+        const urlParams = new URLSearchParams(myurl.search);
+        const id = urlParams.get("id");
+        return id ? parseInt(id) : null;
+      }
+
+        const myurl = new URL(window.location.href);
+        const id = extractIdFromURL(myurl);
+        console.log(id); // Output: 3
+        const myid=2;
+        console.log(myid);
+
+        var requestOptions = {
+        method: 'GET',
+        redirect: 'follow',
+        headers:{
+        Authorization: `Bearer ${token}`},
+      };
+ 
+        fetch("http://192.168.1.14:8000/project/", requestOptions)
+            .then(response =>{
+                if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("NETWORK RESPONSE ERROR");
+    }
+            })
+              .then((data) => {                
+              const projectUserArray = data[myid].projectuser;
+              const projectDocumentArray = data[myid].documentation;
+              console.log(projectUserArray.length);
+            //   const doccard =
+            //    ` <div class="card">
+            //     <div class="content">
+            //       <div class="imgBx">
+            //         <i class="bi bi-book-half" ></i>
+            //       </div>
+            //       <div class="contentBx">
+            //         <h3>Documents<br><span>total</span></h3>
+            //       </div>
+            //     </div>
+            //     <ul class="sci">
+            //       <li>
+            //         <a href="">${projectDocumentArray.length}</a>
+            //       </li>
+            //     </ul>
+            //   </div>`;
+            //  document.getElementById("procard-docs").innerHTML = doccard;
+
+            //   const card = 
+            //   ` <div class="card">
+            //           <div class="content">
+            //             <div class="imgBx">
+            //               <i class="bi bi-people-fill"></i>
+            //             </div>
+            //             <div class="contentBx">
+            //               <h3>Users<br><span>total</span></h3>
+            //             </div>
+            //           </div>
+            //           <ul class="sci">
+            //             <li>
+            //               <a href="">${projectUserArray.length}</a>
+            //             </li>
+            //           </ul>
+            //         </div>`;
+            //   document.getElementById("procard-users").innerHTML = card;
+            //         console.log("Past cards done")
+                
+                  const mdetails=
+                  `
+                  <h2 style="font-size: 2.1em;" class="he">${data[myid].Projectname}</h2>
+                  <h3 style="font-size: 1em;" >${data[myid].url}</h3>
+                  <h3style="font-size: 1em;" >${data[myid].date}</h3>
+                   `;
+                  document.getElementById("mydetails").innerHTML =mdetails;
+
+                  console.log("Linet tiiing");
+                  console.log(data[2]);
+                  console.log(data[myid].projectuser[1].username)
+                  console.log(data[myid].documentation)
+
+               // const projectUserArray = objectdata[myid].projectuser;
+      //          let userdata=""
+      //          data.map((doc)=>{
+      //                   userdata +=  ` 
+      //                   <a href="${doc.documentation}">
+      //                     <div class="dcard">
+                         
+      //                   <div class="dcontent">
+      //                     <div class="dimgBx">
+      //                       <img style="" src="assets/images/ic_doc.png">
+      //                     </div>
+      //                     <div class="dcontentBx">
+      //                       <h3>${doc.projectname}<br><span>${doc.description}</span></h3>                 
+                          
+      //                     </div>
+      //                   </div>
+      //                 </div>
+      //                 </a>`
+      //                   ;
+                                        
+      //               });
+      //               document.getElementById("doc_container").
+      //               innerHTML=userdata;
+
+      //               let usrdata=""
+      //               data.map((project)=>{
+      //                   usrdata +=  
+      //                   `<div class="st_table">
+      // <div class="st_row">
+      //   <div class="st_column _rank">${project.username}</div>
+      //   <div class="st_column _name">${project.password}</div>
+      // </div>
+      // </div>`
+      //               ;
+                                        
+      //               });
+      //               document.getElementById("0").
+      //               innerHTML=usrdata;
+
+                // Iterating through each user in the "projectuser" array
+                projectUserArray.forEach(user => {
+                  console.log(user.username);
+                  const prouserstable=`
+                                <div class="st_table">
+                    <div class="st_row">
+                      <div class="st_column _rank">${user.username}</div>
+                      <div class="st_column _name">${user.password}</div>
+                    </div>
+                    </div>
+                  `
+                  document.getElementById("0").innerHTML=prouserstable; 
+                });
+              
+                projectDocumentArray.forEach(doc =>{
+                   const doc_ument=`
+                  <a href="${doc.documentation}">
+                          <div class="dcard">
+                         
+                        <div class="dcontent">
+                          <div class="dimgBx">
+                            <img style="" src="assets/images/ic_doc.png">
+                          </div>
+                          <div class="dcontentBx">
+                            <h3>${doc.projectname}<br><span>${doc.description}</span></h3>                 
+                          
+                          </div>
+                        </div>
+                      </div>
+                      </a>`
+                      document.getElementById("doc_container").innerHTML=doc_ument;
+                })
+                  
+              })
+               
+
+    //     fetch("http://192.168.1.14:8000/documentations/", requestOptions)
+    //         .then(response =>{
+    //             if (response.ok) {
+    //   return response.json();
+    // } else {
+    //   throw new Error("NETWORK RESPONSE ERROR");
+    // }
+    //         })      
+    //             .then((data) => {
+    //                 console.log(data);
+    //                 return data; 
+    //             })
+    //             .then((objobjectdata.map((doc)=>{
+    //                     userdata +=  ` 
+    //                     <a href="${doc.documentation}">
+    //                       <div class="dcard">
+                         
+    //                     <div class="dcontent">
+    //                       <div class="dimgBx">
+    //                         <img style="" src="assets/images/ic_doc.png">
+    //                       </div>
+    //                       <div class="dcontentBx">
+    //                         <h3>${doc.projectname}<br><span>${doc.description}</span></h3>                 
+                          
+    //                       </div>
+    //                     </div>
+    //                   </div>
+    //                   </a>`
+    //                     ;
+                                        
+    //                 });
+    //                 document.getElementById("doc_container").
+    //                 innerHTML=userdata;ectdata)=>{
+    //                 console.log(objectdata[0].projectname);
+    //                 let userdata=""
+    //                 
+    //             })
+
+</script>   
+<!-- tabs end -->
+   
+    <!--Container Main end-->
+
+</body>
+</html>

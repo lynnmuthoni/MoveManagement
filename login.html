@@ -40,7 +40,7 @@
                 
                             <!-- sub container for the checkbox and forgot password link -->
                             <div class="subcontainer">
-                                <p class="forgotpsd"> <a href="#">Forgot Password?</a></p>
+                                <p class="forgotpsd"> <a href="forgotpass.html">Forgot Password?</a></p>
                             </div>
                 
                 
@@ -101,12 +101,14 @@
 
                 $.ajax(console.log("details"),{
                     type: "POST",
-                    url:"http://192.168.1.7:8000/login/",
+                    url:"http://192.168.1.14:8000/login/",
                     dataType:"json",
                     data:JSON.stringify(form),
                     contentType: "application/json",
                     success: function(response){
-                        sessionStorage.setItem('token', response.token);
+                       localStorage.setItem('token', response.token);
+                    //    HttpSession session= request.getSession();
+                    //    session.setAttribute(name,password);
 
                        // logResponse("loginResponse", `sessionStorage set with token value: ${response.token}`)
                         console.log(response.token)
