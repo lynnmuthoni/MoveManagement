@@ -1,10 +1,10 @@
 from django.contrib import admin
 from .models import Project,ProjectUser,Documentation
 
-
+# admin.site.register(Project)
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display =  ("Projectname","date", "url")
+    list_display =  ("Projectname","image","date", "url")
     search_fields = ('projectname','date','url')
 
 @admin.register(ProjectUser)

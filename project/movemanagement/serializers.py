@@ -102,7 +102,7 @@ class DocumentationSerializer(serializers.ModelSerializer):
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model=Project
-        fields=('id','Projectname','date','url','projectuser','documentation')
+        fields=('id','image','Projectname','date','url','projectuser','documentation')
         depth=1
 
         

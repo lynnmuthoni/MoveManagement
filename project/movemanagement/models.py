@@ -13,12 +13,14 @@ class ProjectUser(models.Model):
 class Documentation(models.Model):
     projectname=models.CharField(max_length=50)
     description=models.TextField(null=True, blank=True)
+    # image=models.ImageField(upload_to='images/')
     documentation=models.FileField(upload_to='documentations/')
 
     def __str__(self):
         return self.projectname
 
 class Project(models.Model):
+    image=models.ImageField(upload_to='images/',null=True,blank=True)
     Projectname=models.CharField(max_length=50)
     date=models.DateField(auto_now_add=True) 
     url=models.URLField(max_length=50)

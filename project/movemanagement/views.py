@@ -8,7 +8,6 @@ from rest_framework.authentication import  TokenAuthentication
 from rest_framework.response import Response
 from knox.auth import AuthToken
 from rest_framework.views import APIView
-from rest_framework import status
 
 # signup view
 class RegisterUserAPIView(generics.CreateAPIView):
@@ -46,32 +45,32 @@ class ResetPassword(APIView):
 #project names views
 class ProjectView(viewsets.ModelViewSet):
         method='GET'
-        authentication_classes= [TokenAuthentication]
-        permission_classes=(IsAuthenticated,) 
+        # authentication_classes= [TokenAuthentication]
+        # permission_classes=(IsAuthenticated,) 
         queryset=Project.objects.all()
         serializer_class=ProjectSerializer
 
 #project users view
 class ProjectUserView(viewsets.ModelViewSet):
         method='GET'
-        authentication_classes= [TokenAuthentication]
-        permission_classes=(IsAuthenticated,)   
+        # authentication_classes= [TokenAuthentication]
+        # permission_classes=(IsAuthenticated,)   
         queryset=ProjectUser.objects.all()
         serializer_class=ProjectUserSerializer
 
 #documentation view
 class DocumentationView(viewsets.ModelViewSet):
     method='GET'
-    authentication_classes= [TokenAuthentication]
-    permission_classes=(IsAuthenticated)
+#     authentication_classes= [TokenAuthentication]
+#     permission_classes=(IsAuthenticated)
     queryset=Documentation.objects.all()
     serializer_class=DocumentationSerializer
 
 #users documentation view
 class UserView(viewsets.ModelViewSet):
         method='GET'
-        authentication_classes= [TokenAuthentication]
-        permission_classes=(IsAuthenticated)
+        # authentication_classes= [TokenAuthentication]
+        # permission_classes=(IsAuthenticated)
         queryset=User.objects.all()
       
 class Count(APIView):
