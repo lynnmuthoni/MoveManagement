@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HomeProjects</title>
+    <title>Projects</title>
     <script src="assets/bootstrap-4.0.0-dist/js/customize.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -17,11 +17,32 @@
  
 </head>
 <body class="body" id="body-pd">
+  <script>
+    function City(evt, cityName) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
+    
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+    
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+    
+      // Show the current tab, and add an "active" class to the button that opened the tab
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+   
+  </script>
+
     <header class="header" id="header">
        
-        <div class="header_toggle"> <i class='bi bi-list' id="header-toggle"></i> </div>  
-        <div class="logo "><h4 style="color: rgb(235, 220, 15); font-family: 'Times New Roman', Times, serif; font-size: x-large;">Projects</h4></div>  
-        <div class="header_img"> <img src="assets/images/ic_users.png" alt="User name"> </div>
     </header>
 
 
@@ -31,7 +52,7 @@
                 <div class="nav_list"> 
                     <a href="homepage.html" class="nav_link active"> <i class="bi bi-house-fill"></i> <span class="nav_name">Home</span> </a>
                     <a href="projectv.html" class="nav_link"> <i class="bi bi-file-earmark-bar-graph-fill"></i> <span class="nav_name">Projects</span> </a>
-                    <a href="settings.html" class="nav_link"> <i class="bi bi-gear-fill"></i> <span class="nav_name">Settings</span> </a> 
+                    <a href="http://192.168.1.10:8000/admin/" class="nav_link"> <i class="bi bi-gear-fill"></i> <span class="nav_name">Settings</span> </a> 
                   
                      </div>
             </div> 
@@ -41,9 +62,8 @@
     </div>
      
     <!--Container Main start-->
-    <div id="project_details">
-    <h2 style="font-size: x-large;" onclick="" class="he">${project.name}</h2>
-    <h4>url </h4>
+    <div id="mydetails">
+    
   </div>
      <!-- Cards start -->
      
@@ -61,12 +81,12 @@
 
 <!-- tabs start -->
     
-<br>
+<section>
 <br>
 <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'Users')">Users</button>
-   <!-- openCity(event, 'Users')">Users</button> -->
-  <button class="tablinks" onclick="openCity(event, 'Documents')">Documents</button>
+  <button class="tablinks" onclick="City(event, 'Users')">Users</button>
+
+  <button class="tablinks" onclick="City(event, 'Documents')">Documents</button>
   
 </div>
 
@@ -75,7 +95,7 @@
     
    <!-- tables start -->
 
-   <table id="0">
+   <table id="table">
     <header class="st_table_header">
       <div class="st_row">
         <div class="st_column _rank">Username</div>
@@ -83,15 +103,17 @@
         
       </div>
     </header>
-  </table>
-        </div>
+   </table>
+  </div>
   <!-- table end -->
   <div id="Documents" class="tabcontent">
     <h3>Documents</h3>
     <div id="doc_container" class="dcontainer">
 
+   
     </div>
-    </div>
+  </div>
+</section>
     
     <!-- DOC END -->
      <script>
@@ -105,38 +127,35 @@
       }
 
         const myurl = new URL(window.location.href);
-        const id = extractIdFromURL(myurl);
-        console.log(id); // Output: 3
-        const myid=3;
+        var myid = extractIdFromURL(myurl);
+        //myid= myid-3;
 
-            
+        console.log(myid); // Output: from url
+        // const myid=3;
+        // console.log(myid);
+        const url =`http://192.168.1.10:8000/project/${myid}/`
         var requestOptions = {
         method: 'GET',
         redirect: 'follow',
         headers:{
         Authorization: `Bearer ${token}`},
       };
-
-
-fetch("http://192.168.1.14:8000/documentations/", requestOptions)
-   .then(response => {
-       if (response.ok) {
-           return response.json();
-       } else {
-           throw new Error("NETWORK RESPONSE ERROR");
-       }
-   })
-   .then(data => {
-       console.log(data);
-       
-
-       let i=0;
-       
-       while (i< data.length){
-         i++
-       }
-       
-        const card = ` <div class="card">
+ 
+        fetch(url, requestOptions)
+            .then(response =>{
+                if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("NETWORK RESPONSE ERROR");
+    }
+            })
+              .then((data) => {   
+                console.log(data);             
+              const projectUserArray = data.projectuser;
+              const projectDocumentArray = data.documentation;
+              console.log(projectUserArray.length);
+              const doccard =
+               ` <div class="card">
                 <div class="content">
                   <div class="imgBx">
                     <i class="bi bi-book-half" ></i>
@@ -147,118 +166,79 @@ fetch("http://192.168.1.14:8000/documentations/", requestOptions)
                 </div>
                 <ul class="sci">
                   <li>
-                    <a href="">${i}</a>
+                    <a href="">${projectDocumentArray.length}</a>
                   </li>
                 </ul>
               </div>`;
-       document.getElementById("procard-docs").innerHTML = card;
-   })
-   .catch(error => console.error(error));
+             document.getElementById("procard-docs").innerHTML = doccard;
 
-   //Users
-   fetch("http://192.168.1.14:8000/projectuser/", requestOptions)
-   .then(response => {
-       if (response.ok) {
-           return response.json();
-       } else {
-           throw new Error("NETWORK RESPONSE ERROR");
-       }
-   })
-   .then(data => {
-       console.log(data);
-
-       let u=0;
-       
-       while (u< data.length){
-         u++
-       }
-       
-        const card = ` <div class="card">
-                <div class="content">
-                  <div class="imgBx">
-                    <i class="bi bi-people-fill"></i>
-                  </div>
-                  <div class="contentBx">
-                    <h3>Users<br><span>total</span></h3>
-                  </div>
-                </div>
-                <ul class="sci">
-                  <li>
-                    <a href="">${u}</a>
-                  </li>
-                </ul>
-              </div>`;
-       document.getElementById("procard-users").innerHTML = card;
-   })
-   .catch(error => console.error(error));
-
- 
-
-        fetch("http://192.168.1.14:8000/project/", requestOptions)
-            .then(response =>{
-                if (response.ok) {
-      return response.json();
-      console.log("reaches here")
-    } else {
-      throw new Error("NETWORK RESPONSE ERROR");
-    }
-            })
-              .then((data) => {
-                    console.log(data);
-                    return data;
-                                    
-                })
-                .then((objectdata)=>{
-
-                  const projectUserArray = objectdata[myid].projectuser;
-
-                  projectUserArray.forEach(user => {
-                  console.log(user.username); 
-                  const mycard=
-                  `<div class="st_table">
-      <div class="st_row">
-        <div class="st_column _rank">${user.username}</div>
-        <div class="st_column _name">${user.password}</div>
-      </div>
-      </div>`
-      document.getElementById("0").innerHTML = mycard;
+              const card = 
+              ` <div class="card">
+                      <div class="content">
+                        <div class="imgBx">
+                          <i class="bi bi-people-fill"></i>
+                        </div>
+                        <div class="contentBx">
+                          <h3>Users<br><span>total</span></h3>
+                        </div>
+                      </div>
+                      <ul class="sci">
+                        <li>
+                          <a href="">${projectUserArray.length}</a>
+                        </li>
+                      </ul>
+                    </div>`;
+              document.getElementById("procard-users").innerHTML = card;
+                    console.log("Past cards done")
+                  const header=
+                  `                              
+                  <div class="header_toggle"> <i class='bi bi-list' id="header-toggle"></i> </div>  
+                  <div class="logo ">
+                     <div>
+                      <img class="logos" src="${data.image}">
+                      </div>
+                     
+                     </div>  
+                     <div class="row">
+                        <div class="col-4" > <img class="header_img" src="assets/images/ic_users.png" alt="User name"> </div>
+                        <div class="col-8"><h5 style="color: rgb(235, 220, 15); font-family: 'Times New Roman', Times, serif; font-size: small;" id="husername"></h5></div>
+                      </div>
+                  `
+                  document.getElementById("header").innerHTML=header;
+                
+                  const mdetails=
+                  `                 
+                  <h2 style="font-size: 2.1em;" class="he">${data.Projectname}</h2>
+                  <a href="${data.url}"><h3 style="font-size: 1em;" >${data.url}</h3></a>
+                  <h3style="font-size: 1em;" >${data.date}</h3>
+                   `;
+                  document.getElementById("mydetails").innerHTML =mdetails;
+                  const name= localStorage.getItem('name');
+                  
+                  // Retrieve the token from session storage
+                      console.log(name);
+                  document.getElementById("husername").textContent = ` ${name}`;
+                // Iterating through each user in the "projectuser" array
+                projectUserArray.forEach(user => {
+                  console.log("I'm reeeeachiiing here")
+                  console.log(user.username);
+                  const prouserstable =`
+                                <div class="st_table">
+                    <div class="st_row">
+                      <div class="st_column _rank">${user.username}</div>
+                      <div class="st_column _name">${user.password}</div>
+                    </div>
+                    </div>
+                  `
+                  const rtable= document.getElementById("table").innerHTML;
+                  // document.getElementById("table").innerHTML=prouserstable; 
+                //  prouserstable.appendChild(rtable);
+                  document.getElementById("table").innerHTML = rtable + prouserstable;
                 });
-
-      //               console.log(objectdata[0].Projectname);
-      //               let userdata=""
-      //               objectdata.map((project)=>{
-      //                   userdata +=  
-      //                   `<div class="st_table">
-      // <div class="st_row">
-      //   <div class="st_column _rank">${project.username}</div>
-      //   <div class="st_column _name">${project.password}</div>
-      // </div>
-      // </div>`
-      //               ;
-                                        
-      //               });
-      //               document.getElementById("0").
-      //               innerHTML=userdata;
-                });
-
-        fetch("http://192.168.1.14:8000/documentations/", requestOptions)
-            .then(response =>{
-                if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error("NETWORK RESPONSE ERROR");
-    }
-            })      
-                .then((data) => {
-                    console.log(data);
-                    return data; 
-                })
-                .then((objectdata)=>{
-                    console.log(objectdata[0].projectname);
-                    let userdata=""
-                    objectdata.map((doc)=>{
-                        userdata +=  ` 
-                        <a href="${doc.documentation}">
+              
+                projectDocumentArray.forEach(doc =>{
+                   const doc_ument= `
+                  <a href="${doc.documentation}">
                           <div class="dcard">
                          
                         <div class="dcontent">
@@ -272,12 +252,52 @@ fetch("http://192.168.1.14:8000/documentations/", requestOptions)
                         </div>
                       </div>
                       </a>`
-                        ;
-                                        
-                    });
-                    document.getElementById("doc_container").
-                    innerHTML=userdata;
+                     // document.getElementById("doc_container").innerHTML=doc_ument;
+                      const rdocument= document.getElementById("doc_container").innerHTML;
+                       
+                  document.getElementById("doc_container").innerHTML = rdocument + doc_ument;
                 })
+                  
+              })
+               
+
+    //     fetch("http://192.168.1.9:8000/documentations/", requestOptions)
+    //         .then(response =>{
+    //             if (response.ok) {
+    //   return response.json();
+    // } else {
+    //   throw new Error("NETWORK RESPONSE ERROR");
+    // }
+    //         })      
+    //             .then((data) => {
+    //                 console.log(data);
+    //                 return data; 
+    //             })
+    //             .then((objobjectdata.map((doc)=>{
+    //                     userdata +=  ` 
+    //                     <a href="${doc.documentation}">
+    //                       <div class="dcard">
+                         
+    //                     <div class="dcontent">
+    //                       <div class="dimgBx">
+    //                         <img style="" src="assets/images/ic_doc.png">
+    //                       </div>
+    //                       <div class="dcontentBx">
+    //                         <h3>${doc.projectname}<br><span>${doc.description}</span></h3>                 
+                          
+    //                       </div>
+    //                     </div>
+    //                   </div>
+    //                   </a>`
+    //                     ;
+                                        
+    //                 });
+    //                 document.getElementById("doc_container").
+    //                 innerHTML=userdata;ectdata)=>{
+    //                 console.log(objectdata[0].projectname);
+    //                 let userdata=""
+    //                 
+    //             })
 
 </script>   
 <!-- tabs end -->

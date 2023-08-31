@@ -109,26 +109,34 @@
                 "password":password,
                 "email":email,
         };
-console.log("details"),
-//  console.log("username" + name);
-//  console.log("password" + password);
+        $.ajax(console.log("details"),{
+                    type: "POST",
+                    url:"http://192.168.1.13:8000/register/",
+                    dataType:"json",
+                    data:JSON.stringify(form),
+                    contentType: "application/json",
+                    //mode:no-cors,
+                    success: function(response){
+                                          
+                    //    HttpSession session= request.getSession();
+                    //    session.setAttribute(name,password);
 
-        $.ajax({
-                type: "POST",
-                url:"http://192.168.1.14:8000/register/",
-                dataType:"json",
-                data:JSON.stringify(form),
-                contentType: "application/json",
-                success: function(response){
-                //if request if made successfully then the response represent the data
-                console.log("Successfully registered");
-                window.location.href = 'login.html'; 
-                console.log(response);
-                // $( "#result" ).empty().append( response );
-        }
-        });
+                       // logResponse("loginResponse", `sessionStorage set with token value: ${response.token}`)
+                        
+                        window.location.href = 'login.html'; 
+                        
+                        alert("Successful login proceeding to login")
+
+                        console.log(name);
+                        console.log(response);
+                    },
+
+                        error: function(xhr, status, error) {
+                                alert("Registration failed. Please check your credentials.");
+                            }
 
 });  
+         })
 
 
    </script>

@@ -62,9 +62,96 @@ document.addEventListener("DOMContentLoaded", function(event) {
       evt.currentTarget.className += " active";
     }
    
-    function Logout(){
-      fetch(https:)
+  function Logout() {
 
-    }
+    
+      const token = sessionStorage.getItem('token');
+      var form={
+        "Authorization":`Token ${token}` ,
+      }
+      // console.log(form)
+  //     .$.ajax( {
+  //       type: "POST",
+  //       url:"http://192.168.1.10:8000/logout/",
+  //       dataType:"json",
+  //       data:JSON.stringify(form),        
+  //       "timeout": 0,
+  //       "headers": {
+  //                  "Authorization": `Bearer ${token}`,
+  //                  contentType: "application/json",
+  //                 }
+  //       })
+  // .done(function (response) {
+  //       console.log(response);
+  //     });
 
+
+  // var settings = {
+  //   "url": "http://192.168.1.10:8000/logout/",
+  //   "method": "POST",
+  //   "timeout": 0,
+  //   "headers": {
+  //     "Authorization": `Token ${token}`
+  //   },
+  // };
+  
+  // $.ajax(settings)
+  // .done(function (response) {
+  //   console.log(response);
+  // });
+
+
+  // var settings = {
+  //   "url": "http://192.168.1.10:8000/logout/",
+  //   "type": "POST",
+  //   "timeout": 0,
+  //   //"mode":"no-cors",
+  //   "headers": {
+  //     "Authorization": "Token 5f836af9ba724cec7e588781ad1f809c1a08d7abc99b8cdda8aeec42fdc8a406",
       
+  //   },
+  // };
+  
+  // $.ajax(settings).done(function (response) {
+  //   console.log(response);
+  // });
+
+  // var settings = {
+  //   "url": "http://192.168.1.10:8000/logout/",
+  //   "method": "POST",
+  //   "timeout": 0,
+  //   "headers": {
+  //     "Authorization": "Token dcf3356209e0176abd494305370aa36ed63902b99c96821c79f3d163624e7af3"
+  //   },
+  // };
+  
+  // $.ajax(settings).done(function (response) {
+  //   console.log(response);
+  // });
+
+  $.ajax(console.log("details"),{
+    type: "POST",
+    url:"http://192.168.1.10:8000/logout/",
+    timeout: 0,
+    headers: {
+      Authorization: `Token ${token}`
+    },
+    dataType:"json",
+    data:JSON.stringify(form),
+    contentType: "application/json",
+    success: function(response){
+      
+        console.log(response)
+        window.location.href = 'login.html'; 
+        
+        alert("Successfully logout")
+
+        
+    },
+
+        error: function(xhr, status, error) {
+                alert("Logout failed. ");
+            }
+        
+    })
+    }

@@ -22,7 +22,7 @@
                     <form id="changepass">
                         <!-- Headings for the form -->
                         <div class="headingsContainer">
-                            <h4 style="color: rgba(20, 91, 197, 0.808);" class="text_sign ">Forgot Password</h4>
+                            <h4 style="color: rgba(20, 91, 197, 0.808);" class="text_sign ">Change Password</h4>
                             <i class="bi bi-lock-fill"></i>
                         </div>
                 
@@ -39,7 +39,7 @@
                 
                            <!-- Confirm new password -->
                              <label for="useremail">Confirm New Password</label>
-                             <input type="password" value=""  placeholder="Enter Password" id="Conpassword" name="password" >
+                             <input type="password" value=""  placeholder="Enter Password" id="confirmpassword" name="confirmpassword" >
                  
                             <br><br>
                             <br>
@@ -51,76 +51,79 @@
         </div>
     </div>
     <script>
-       
-        $( "#changepass" ).submit(function( event ) {
-     
-                // Stop form from submitting normally
-                event.preventDefault();
+    $("#changepass").submit(function( event ) {
+ 
+        // Stop form from submitting normally
+        event.preventDefault();
+        
+        // Get the value of the input field with id="username"
+        const name = document.getElementById("username").value.trim();
                 
-                // Get the value of the input field with id="username"
-                const name = document.getElementById("name").value.trim();
-                        
-                // Get the value of the input field with id="password"
-                const password = document.getElementById("password").value;
-                // Get the value of the input field with id="confirmpassword"
-                const cpassword = document.getElementById("Conpassword").value;
+        // Get the value of the input field with id="password"
+        const password = document.getElementById("password").value;
+        // Get the value of the input field with id="confirmpassword"
+
+        const confirmpassword = document.getElementById("confirmpassword").value;
+        // Get the value of the input field with id="confirmpassword"
+        
+        // Check if the username is empty
+        if (name == "") {
+            alert("Username field must be filled out");
+            return false;
+        }
+        
+            // Check if the password is empty
+        if (password == "") {
+            alert("Password field must be filled out");
+            return false;
+        }
+        if (confirmpassword != password) {
+            alert("Passwords don't match");
+            return false;
+        }
+        
+            console.log("heeere")
+            var form = {
+                "username":name,
+                "password":password,
+            };
+
+            //  console.log("username" + name);
+            //  console.log("password" + password);
+
+            $.ajax(console.log("details"),{
+                type: "POST",
+                url:"http://192.168.1.15:8000/resetpassword/",
+                dataType:"json",
+                data:JSON.stringify(form),
+                contentType: "application/json",
+                success: function(response){
+                   localStorage.setItem('token', response.token);
+                //    HttpSession session= request.getSession();
+                //    session.setAttribute(name,password);
+
+                   // logResponse("loginResponse", `sessionStorage set with token value: ${response.token}`)
+                    console.log(response.token)
+                    window.alert("Password successfully changed")
+                    window.location.href = 'login.html'; 
+                    
+                    console.log(response);
+                },
+
+                    error: function(xhr, status, error) {
+                            alert("Login failed. Please check your credentials.");
+                        }
+                    //if request if made successfully then the response represent the data
+                    // console.log("Successful response");
                 
-                // Check if the username is empty
-                if (name == "") {
-                    alert("Username field must be filled out");
-                    return false;
-                }
+                    // $( "#result" ).empty().append( response );
+                })
                 
-                    // Check if the password is empty
-                if (password == "") {
-                    alert("Password field must be filled out");
-                    return false;
-                }
-                if (password!=cpassword){
-                    alert("Passwords don't match")
-                    return false;
-                }
-    
-                    var form = {
-                        "username":name,
-                        "password":password,
-                    };
-    
-                    //  console.log("username" + name);
-                    //  console.log("password" + password);
-    
-                    $.ajax(console.log("details"),{
-                        type: "POST",
-                        url:"http://192.168.1.14:8000/resetpassword/",
-                        dataType:"json",
-                        data:JSON.stringify(form),
-                        contentType: "application/json",
-                        success: function(response){
-                           localStorage.setItem('token', response.token);
-                        //    HttpSession session= request.getSession();
-                        //    session.setAttribute(name,password);
-    
-                           // logResponse("loginResponse", `sessionStorage set with token value: ${response.token}`)
-                            console.log(response.token)
-                            window.location.href = 'login.html'; 
-                            
-                            console.log(response);
-                        },
-    
-                            error: function(xhr, status, error) {
-                                    alert(" failed.");
-                                }
-                            //if request if made successfully then the response represent the data
-                            // console.log("Successful response");
-                        
-                            // $( "#result" ).empty().append( response );
-                        })
-                        
-                    });
-    
-                    //});  
-                
-        </script>
+            });
+
+            //});  
+        
+</script>
        
 </body>
 </html>
